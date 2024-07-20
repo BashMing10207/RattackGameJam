@@ -44,7 +44,7 @@ public class PlayerInventory : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"list doesn't have a skill to remove");
+            Debug.LogError($"skillList doesn't have a skill to remove");
         }
     }
 }

@@ -105,7 +105,7 @@
         </member>
         <member name="M:DG.DemiLib.External.DeHierarchyComponent.MissingItemsIndexes">
             <summary>
-            Returns a list of all items whose gameObject is NULL, or NULL if there's no missing gameObjects.
+            Returns a skillList of all items whose gameObject is NULL, or NULL if there's no missing gameObjects.
             </summary>
         </member>
         <member name="M:DG.DemiLib.External.DeHierarchyComponent.StoreItemColor(UnityEngine.GameObject,DG.DemiLib.External.DeHierarchyComponent.HColor)">
