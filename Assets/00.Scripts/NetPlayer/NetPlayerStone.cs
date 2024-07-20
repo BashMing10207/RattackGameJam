@@ -1,4 +1,5 @@
 using System;
+using Unity.Netcode;
 using UnityEngine;
 
 public class NetPlayerStone : NetStone
@@ -54,6 +55,7 @@ public class NetPlayerStone : NetStone
             NetGameMana.Instance.playerOff.stones.Remove(this);
         }
     }
+
 
     private void Update()
     {
