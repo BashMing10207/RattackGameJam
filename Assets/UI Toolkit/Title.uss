@@ -26,6 +26,7 @@
     margin-left: 20px;
     background-image: url("project://database/Assets/02.Textures/Wood.jpg?fileID=21300000&guid=e81e43c7e62f06c43b7c1027ff63fd85&type=3#Wood");
     transition-duration: 0.4s;
+    -unity-font: resource('Danjo-bold-Regular');
 }
 
 .btn:hover {
