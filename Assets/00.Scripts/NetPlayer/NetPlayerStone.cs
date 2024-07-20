@@ -13,11 +13,11 @@ public class NetPlayerStone : NetStone
     public float weight;
     public float force;
     public event Action<NetPlayerStone> Actions;
-    public PlayerInventory inventory;
+    
     private void Awake()
     {
         NetCPlayer.OnTurnEnd += HandleOnTurn;
-        inventory = GetComponent<PlayerInventory>();
+        
     }
     private void Start()
     {

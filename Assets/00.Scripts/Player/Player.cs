@@ -57,11 +57,13 @@ public class Player : MonoBehaviour
 
             Camchange();
         }
-            PlayerActionMing();
+        PlayerActionMing();
     }
 
     void Camchange()
     {
+        
+
         currentNum = (currentNum + 1) % stones.Count;
         //인덱스 번호 바꾸기
         camera2.LookAt = stones[currentNum].pivot;

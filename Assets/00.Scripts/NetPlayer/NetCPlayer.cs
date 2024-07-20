@@ -26,6 +26,10 @@ public class NetCPlayer : NetworkBehaviour
 
     public ProjectileSO fireball;//임시 테스트용
 
+    public GameObject inventoryPrefab;
+    
+    public PlayerInventory PlayerInventory;
+    
     ActivedSkill activedSkill;
 
     #region mouseForceMove
@@ -37,7 +41,7 @@ public class NetCPlayer : NetworkBehaviour
     {
         //JoinEvent.INSTANCE.SetActive(false);
         NetControlUI.INSTANCE.OnJoin(TestLobby.CODE);
-
+        
         vCamera = NetGameMana.Instance.GetComponentInChildren<CinemachineVirtualCamera>();
         //if (NetGameMana.INSTANCE.player != null)
         //{
@@ -46,7 +50,11 @@ public class NetCPlayer : NetworkBehaviour
         //}
         NetGameMana.Instance.player = this;
         mainCam = Camera.main;
-  
+
+        GameObject inventory = Instantiate(inventoryPrefab);
+        
+        
+        
         lineRenderer = mainCam.GetComponentInChildren<LineRenderer>();
 
     }
@@ -113,7 +121,6 @@ public class NetCPlayer : NetworkBehaviour
 
     void FuckeCode()
     {
-
         //vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
         //vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
         SetOutline(true);
