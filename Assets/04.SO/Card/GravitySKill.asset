@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fad20ac249df0c4da92aac33bea949d, type: 3}
   m_Name: GravitySKill
   m_EditorClassIdentifier: 
-  description: "\uC911\uB825\uC774 \uAD81\uAE08\uD574~ \uADF8\uB798\uBE44\uD2F0 "
+  description: "\uC8FC\uBCC0\uC758 \uC801\uC744 \uB04C\uC5B4 \uBAA8\uC74D\uB2C8\uB2E4."
   cardImage: {fileID: -1308582366, guid: 659294e9f570a3a4aa6bf98c63c7fb6b, type: 3}
   projectileSO: {fileID: 11400000, guid: 27013773e18189b4eb6b3be30a78d63c, type: 2}

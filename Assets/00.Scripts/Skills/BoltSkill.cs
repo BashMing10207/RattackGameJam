@@ -13,8 +13,8 @@ public class BoltSkill : Skill
         Collider[] cols = Physics.OverlapSphere(netPlayerStone.transform.position , 20 ,whatIsStone);
         foreach (var item in cols )
         {
-            item.GetComponent<NetPlayerStone>().weight += 40;
-            item.GetComponent<NetPlayerStone>().force -= 20;
+            item.GetComponentInParent<NetPlayerStone>().weight += 40;
+            item.GetComponentInParent<NetPlayerStone>().force -= 20;
         }
     }
 }

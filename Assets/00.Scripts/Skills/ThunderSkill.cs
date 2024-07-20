@@ -10,7 +10,7 @@ public class ThunderSkill : Skill
         Collider[] cols = Physics.OverlapSphere(netPlayerStone.transform.position , 20 ,whatIsStone);
         foreach (var item in cols )
         {
-            item.GetComponent<NetPlayerStone>().health -= 20;
+            item.GetComponentInParent<NetPlayerStone>().health -= 20;
         }
 
     }

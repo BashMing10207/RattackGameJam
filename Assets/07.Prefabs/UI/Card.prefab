@@ -143,9 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63762666e14a5ce4b9ac52bdd93a8f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillEnum: 0
   cardSprite: {fileID: 4266575357410378929}
   cardText: {fileID: 6535849194982014178}
-  skill: 0
 --- !u!114 &2742601522914087792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,8 +255,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC751\uC5B4\uC544\uC787\uBD81\uB531\uBD81\uB531 \uD754\uB4E4\uC5B4\uB77C
-    \uC751\uAE30\uAE30\uC787 \uB07C\uC57C\uD638\uC6B0\uC6B0\uC5B8\uC6B0\uC6B0\u315C\uC6B0\uC6B0\uB044\uC544\uC544\uC544"
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17a3caad36bb221478279b5aed9ab3c5, type: 2}
   m_sharedMaterial: {fileID: -4134345027831314768, guid: 17a3caad36bb221478279b5aed9ab3c5, type: 2}

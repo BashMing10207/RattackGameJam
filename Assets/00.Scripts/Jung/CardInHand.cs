@@ -49,9 +49,9 @@ public class CardInHand : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
             skill.UIUse(NetCPlayer.GetCurrentStone);
         else skill.ThrowableInit();
 
-        //posList.Remove(this.GetComponent<RectTransform>());
-        //onRemove.Invoke(NetGameMana.Instance.skillManager.GetSkill(Skills));
+        posList.Remove(this.GetComponent<RectTransform>());
+        onRemove.Invoke(NetGameMana.Instance.skillManager.GetSkill(Skills));
         
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

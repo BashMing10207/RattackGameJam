@@ -1002,7 +1002,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6021955, y: -0.000000006868345, z: 0.000000005180802, w: 0.79834867}
+  m_LocalRotation: {x: 0.6021955, y: 0.0000000068683463, z: -0.000000005180803, w: 0.79834867}
   m_LocalPosition: {x: 9.78, y: 35.775, z: 22.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11226,6 +11226,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515197691}
   m_CullTransparentMesh: 1
+--- !u!1 &616072714
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 616072715}
+  - component: {fileID: 616072716}
+  m_Layer: 0
+  m_Name: '-'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &616072715
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616072714}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1318358769}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &616072716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616072714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 988b147609ce749419881edb59499772, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUiUse: 1
+  so_Card: {fileID: 11400000, guid: 826a13cc65592ed429bf707c105be42b, type: 2}
+  effect: {fileID: 5149893908687784686, guid: 4b1f88fc434634046ab497b3a9d2315b, type: 3}
+  endTurnAmount: 0
+  endTurnAmountMax: 0
+  stone: {fileID: 0}
+  whatIsStone:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1001 &641657070
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11520,12 +11573,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf8d7f9fae8d364483143a12aa2e368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUiUse: 0
+  isUiUse: 1
   so_Card: {fileID: 11400000, guid: 6b92d6521ebb0fc4b961b7ed9ff3d182, type: 2}
-  effect: {fileID: 0}
+  effect: {fileID: 5500832251168879825, guid: 496c4d9f53a98b846985bd9fb193225f, type: 3}
   endTurnAmount: 0
   endTurnAmountMax: 0
   stone: {fileID: 0}
+  whatIsStone:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &721100821
 GameObject:
   m_ObjectHideFlags: 0
@@ -11718,6 +11774,7 @@ MonoBehaviour:
   skillManager: {fileID: 0}
   LifeUI: {fileID: 0}
   playerHand: {fileID: 1290980587}
+  CardSelectPanel: {fileID: 0}
   relayMana: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
@@ -37314,7 +37371,9 @@ Transform:
   - {fileID: 1119325985}
   - {fileID: 269383832}
   - {fileID: 1124186016}
-  - {fileID: 2142842852}
+  - {fileID: 616072715}
+  - {fileID: 2089258207}
+  - {fileID: 1922299211}
   m_Father: {fileID: 373269994}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1460646623 stripped
@@ -52713,7 +52772,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817903815}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6021955, y: -0.000000006868345, z: 0.000000005180802, w: 0.79834867}
+  m_LocalRotation: {x: 0.6021955, y: 0.0000000068683463, z: -0.000000005180803, w: 0.79834867}
   m_LocalPosition: {x: 39.17332, y: 38.662884, z: -36.895485}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -62759,6 +62818,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 330585546}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1922299210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1922299211}
+  - component: {fileID: 1922299212}
+  m_Layer: 0
+  m_Name: '-'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1922299211
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922299210}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1318358769}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1922299212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922299210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fee815ba66095148bceb2df87f81fbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUiUse: 1
+  so_Card: {fileID: 11400000, guid: 9f03ae2c42e8dcd47825286b10d0408f, type: 2}
+  effect: {fileID: 2654982435969415619, guid: 9654119f5b4a4c34aae8d9d34ec3b9dd, type: 3}
+  endTurnAmount: 0
+  endTurnAmountMax: 0
+  stone: {fileID: 0}
+  whatIsStone:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &1931834190
 GameObject:
   m_ObjectHideFlags: 0
@@ -73075,6 +73187,56 @@ LineRenderer:
   m_UseWorldSpace: 0
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!1 &2089258206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2089258207}
+  - component: {fileID: 2089258208}
+  m_Layer: 0
+  m_Name: '-'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2089258207
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089258206}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1318358769}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2089258208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089258206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e252a79d3252a744ebd42ec92831d551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUiUse: 1
+  so_Card: {fileID: 11400000, guid: e6ece6d02184ca94ebe63734f14807f1, type: 2}
+  effect: {fileID: 0}
+  endTurnAmount: 0
+  endTurnAmountMax: 0
+  stone: {fileID: 0}
 --- !u!1001 &2125160610
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78043,59 +78205,6 @@ Transform:
   - {fileID: 1572543436}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2142842851
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2142842852}
-  - component: {fileID: 2142842853}
-  m_Layer: 0
-  m_Name: '-'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2142842852
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2142842851}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1318358769}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2142842853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2142842851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a4284233fad08c4b83c9165d5473471, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isUiUse: 1
-  so_Card: {fileID: 11400000, guid: 9679d1956e34a124382df7991cfeadac, type: 2}
-  effect: {fileID: 2654982435969415619, guid: 9654119f5b4a4c34aae8d9d34ec3b9dd, type: 3}
-  endTurnAmount: 0
-  endTurnAmountMax: 0
-  stone: {fileID: 0}
-  whatIsBadukdol:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!1001 &1699400957482900608
 PrefabInstance:
   m_ObjectHideFlags: 0
