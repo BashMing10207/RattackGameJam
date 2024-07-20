@@ -4980,6 +4980,9 @@ MonoBehaviour:
   pivot: {fileID: 7092879372156963658}
   id: 0
   isHost: 1
+  health: 0
+  weight: 0
+  force: 0
 --- !u!114 &5150803281513559116
 MonoBehaviour:
   m_ObjectHideFlags: 0

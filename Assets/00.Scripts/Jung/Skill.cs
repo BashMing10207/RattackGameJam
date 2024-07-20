@@ -4,6 +4,7 @@ using UnityEngine.UIElements;
 
 public abstract class Skill : MonoBehaviour
 {
+    public Transform stone;
     [SerializeField] private SO_CardAsset so_Card;
     public SO_CardAsset GetCardSO => so_Card;
 
@@ -17,16 +18,7 @@ public abstract class Skill : MonoBehaviour
     }
     public virtual void TryActivateSkill()
     {
-        if (skillCoolDown <= _skillTimer)
-        {
-            _skillTimer = 0;
-            ActivateSkill();
-        }
-    }
-
-    private void Update()
-    {
-        _skillTimer += Time.deltaTime;
+        ActivateSkill();
     }
 
     protected virtual void ActivateSkill()
@@ -35,7 +27,6 @@ public abstract class Skill : MonoBehaviour
         {
             item.Play();
         }
-        
         
     }
 }
