@@ -20,7 +20,7 @@ public abstract class Skill : NetworkBehaviour
     public void TryActivateSkill(NetPlayerStone netPlayerStone)
     {
         ActivateSkill(netPlayerStone);
-                
+        
         
     }
     
