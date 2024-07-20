@@ -47,6 +47,10 @@ public abstract class Skill : NetworkBehaviour
     {
         //FuckYou;
     }
+    protected virtual void AccleateSKilll(NetPlayerStone netPlayerStone, Vector3 forceInput, float magnitude)
+    {
+        //FuckYou;
+    }
     protected virtual void OnEndTurn(NetPlayerStone netPlayerStone)
     {
         void Deregister()
