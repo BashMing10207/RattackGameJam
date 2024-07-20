@@ -4,22 +4,12 @@ using UnityEngine.UIElements;
 
 public abstract class Skill : MonoBehaviour
 {
-    [SerializeField] protected float skillCoolDown;
-    protected float _skillTimer;
+    public Transform stone;
     private List<ParticleSystem> particleSystems;
-    
+        
     public virtual void TryActivateSkill()
     {
-        if (skillCoolDown <= _skillTimer)
-        {
-            _skillTimer = 0;
-            ActivateSkill();
-        }
-    }
-
-    private void Update()
-    {
-        _skillTimer += Time.deltaTime;
+        ActivateSkill();
     }
 
     protected virtual void ActivateSkill()
@@ -28,7 +18,6 @@ public abstract class Skill : MonoBehaviour
         {
             item.Play();
         }
-        
         
     }
 }

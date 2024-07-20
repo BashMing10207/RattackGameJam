@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NetPlayerStone : NetStone
@@ -7,6 +5,11 @@ public class NetPlayerStone : NetStone
     public Transform pivot;
     public int id;
     public bool isHost;
+
+    public float health;
+    public float weight;
+    public float force;
+    
     private void Start()
     {
         if (NetGameMana.H_ISMULTI())
@@ -45,4 +48,20 @@ public class NetPlayerStone : NetStone
             Destroy(gameObject);
         }
     }
+
+    public void AddHealth(float amount)
+    {
+        health += amount;
+    }
+    
+    public void AddForce(float amount)
+    {
+        force += amount;
+    }
+    
+    public void AddWeight(float amount)
+    {
+        weight += amount;
+    }
+    
 }
