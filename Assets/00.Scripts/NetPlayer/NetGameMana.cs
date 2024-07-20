@@ -19,6 +19,8 @@ public class NetGameMana: MonoBehaviour
     public CardSelectPanel CardSelectPanel;
     
     public TestLobby relayMana;
+
+    //SkillManaV2 skillManaV2;
     private void Awake()
     {
         Instance = this;
