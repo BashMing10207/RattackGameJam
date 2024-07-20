@@ -13,8 +13,8 @@ public enum ActivedSkill
 };
 public class NetCPlayer : NetworkBehaviour      
 {
-    public NetworkVariable<bool> isHostTurn = new NetworkVariable<bool>(value:true);
-    public NetworkVariable<int> currentNum = new NetworkVariable<int>(value:0);
+    public static NetworkVariable<bool> isHostTurn = new NetworkVariable<bool>(value:true);
+    public static NetworkVariable<int> currentNum = new NetworkVariable<int>(value:0);
     public List<NetPlayerStone>[] stones = new List<NetPlayerStone>[2] {new List<NetPlayerStone>(), new List<NetPlayerStone>()};
     public CinemachineVirtualCamera vCamera;
     public Camera mainCam;
@@ -35,6 +35,9 @@ public class NetCPlayer : NetworkBehaviour
 
     void Awake()
     {
+        //JoinEvent.INSTANCE.SetActive(false);
+        NetControlUI.INSTANCE.OnJoin(TestLobby.CODE);
+
         if(NetGameMana.INSTANCE.player != null)
         {
             stones = NetGameMana.INSTANCE.player.stones;
