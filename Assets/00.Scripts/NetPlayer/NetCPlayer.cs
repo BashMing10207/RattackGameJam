@@ -33,7 +33,9 @@ public class NetCPlayer : NetworkBehaviour
     public bool isActionSelected = false;
 
     public Transform[] StonePrefs;
+    public int actionCount = 0;
 
+    public bool isSkillUsed, isMoved;
     //public ProjectileSO fireball;//임시 테스트용
     public static ProjectileSO ProjectileToShoot { get; set; }
     ActivedSkill activedSkill;
@@ -46,6 +48,7 @@ public class NetCPlayer : NetworkBehaviour
     #endregion
 
     private GameObject playerHand;
+    
     
     
     void Awake()
@@ -230,6 +233,12 @@ public class NetCPlayer : NetworkBehaviour
                     WhatActionServerRpc(mousepos, forceInput, magnitude, activedSkill);
                 //print(forceInput.normalized);
                 lineRenderer.enabled = false;
+                actionCount++;
+                if (actionCount > 1)
+                {
+                    actionCount = 0;
+                    EndTurnServerRpc();
+                }
             }
         }
 
@@ -241,6 +250,8 @@ public class NetCPlayer : NetworkBehaviour
         {
             case ActivedSkill.move:
                 stones[isHostTurn.Value ? 0 : 1][currentNum.Value].ForceMove(new Vector3(forceInput.x, 0, forceInput.y).normalized, -magnitude, 1);
+                isMoved = true;
+                ChangeTurnChoice();
                 break;
                 
             case ActivedSkill.create:
@@ -285,6 +296,14 @@ public class NetCPlayer : NetworkBehaviour
             case ActivedSkill.throwBox:
                 break;
         };
+    }
+
+    public void ChangeTurnChoice()
+    {
+        if(isMoved&&isSkillUsed)
+        {
+            EndTurnServerRpc();
+        }
     }
 
     private void SetOutline(bool active)

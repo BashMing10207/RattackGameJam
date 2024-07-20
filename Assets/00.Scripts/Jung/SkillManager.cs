@@ -36,6 +36,7 @@ public class SkillManager : MonoBehaviour
     }
     public Skill GetSkill(Skills skillToGet)
     {
+        NetGameMana.Instance.player.isSkillUsed = true;
         return skillDic[skillToGet];
     }
 
