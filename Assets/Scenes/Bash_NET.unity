@@ -1105,8 +1105,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b158cda973aa084e83adca5a9395ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsLocalPlayer>k__BackingField: 0
+  <IsOwner>k__BackingField: 0
+  <IsServer>k__BackingField: 0
+  <ServerIsHost>k__BackingField: 0
+  <IsClient>k__BackingField: 0
+  <IsHost>k__BackingField: 0
+  <IsOwnedByServer>k__BackingField: 0
+  <IsSpawned>k__BackingField: 0
+  m_NetworkObject: {fileID: 0}
+  <NetworkObjectId>k__BackingField: 0
+  <NetworkBehaviourId>k__BackingField: 0
+  NetworkBehaviourIdCache: 0
+  <OwnerClientId>k__BackingField: 0
+  m_VarInit: 0
+  <m_TargetIdBeingSynchronized>k__BackingField: 0
   stone: {fileID: 0}
   so_Card: {fileID: 11400000, guid: 6b92d6521ebb0fc4b961b7ed9ff3d182, type: 2}
+  particleSystems: []
   endTurnAmount: 0
   endTurnAmountMax: 0
   amount: 0
@@ -11422,11 +11438,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71b59ae2a4dfb5b4fb9a46f48e705e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stone: {fileID: 0}
+  isUiUse: 0
   so_Card: {fileID: 11400000, guid: e5d5ffae010e9a8459f720395787a4a6, type: 2}
   effect: {fileID: 0}
   endTurnAmount: 0
   endTurnAmountMax: 0
+  stone: {fileID: 0}
 --- !u!1 &532343803
 GameObject:
   m_ObjectHideFlags: 0
@@ -11472,13 +11489,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a21806af048a64f84508091322129d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsLocalPlayer>k__BackingField: 0
+  <IsOwner>k__BackingField: 0
+  <IsServer>k__BackingField: 0
+  <ServerIsHost>k__BackingField: 0
+  <IsClient>k__BackingField: 0
+  <IsHost>k__BackingField: 0
+  <IsOwnedByServer>k__BackingField: 0
+  <IsSpawned>k__BackingField: 0
+  m_NetworkObject: {fileID: 0}
+  <NetworkObjectId>k__BackingField: 0
+  <NetworkBehaviourId>k__BackingField: 0
+  NetworkBehaviourIdCache: 0
+  <OwnerClientId>k__BackingField: 0
+  m_VarInit: 0
+  <m_TargetIdBeingSynchronized>k__BackingField: 0
   stone: {fileID: 0}
   so_Card: {fileID: 11400000, guid: fdd9b76277525c745993b8f4855eb43f, type: 2}
+  particleSystems: []
   endTurnAmount: 0
   endTurnAmountMax: 0
   explosionRadius: 0
   whatIsStone:
-    serializedVersion: 2
     m_Bits: 0
   iceMaterial: {fileID: 0}
   _originMaterial: {fileID: 0}
@@ -11927,7 +11959,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &770646733
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12147,6 +12179,7 @@ MonoBehaviour:
   pool: {fileID: 974659289}
   skillManager: {fileID: 0}
   LifeUI: {fileID: 0}
+  playerHand: {fileID: 0}
   relayMana: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
@@ -37559,8 +37592,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f85e9d9a8649cc547afe9f4a4bce83cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsLocalPlayer>k__BackingField: 0
+  <IsOwner>k__BackingField: 0
+  <IsServer>k__BackingField: 0
+  <ServerIsHost>k__BackingField: 0
+  <IsClient>k__BackingField: 0
+  <IsHost>k__BackingField: 0
+  <IsOwnedByServer>k__BackingField: 0
+  <IsSpawned>k__BackingField: 0
+  m_NetworkObject: {fileID: 0}
+  <NetworkObjectId>k__BackingField: 0
+  <NetworkBehaviourId>k__BackingField: 0
+  NetworkBehaviourIdCache: 0
+  <OwnerClientId>k__BackingField: 0
+  m_VarInit: 0
+  <m_TargetIdBeingSynchronized>k__BackingField: 0
   stone: {fileID: 0}
   so_Card: {fileID: 11400000, guid: 3d84063a07aaf02429d25375d611b912, type: 2}
+  particleSystems: []
   endTurnAmount: 0
   endTurnAmountMax: 0
   amount: 0
@@ -68351,7 +68400,6 @@ MonoBehaviour:
   mainCam: {fileID: 330585545}
   isActionSelected: 1
   StonePrefs: []
-  fireball: {fileID: 11400000, guid: 27013773e18189b4eb6b3be30a78d63c, type: 2}
   extraLife: 3
   lineRenderer: {fileID: 2074936019}
 --- !u!1 &1983296932

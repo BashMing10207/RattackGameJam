@@ -26,7 +26,7 @@ public class NetCPlayer : NetworkBehaviour
         }
     }
     public static List<NetPlayerStone>[] stones = new List<NetPlayerStone>[2] { new List<NetPlayerStone>(), new List<NetPlayerStone>() };
-    public static NetworkList<int> extraLifeCount = new NetworkList<int>();
+    public static NetworkVariable <int>[] extraLifeCount = new NetworkVariable<int>[2] {new NetworkVariable<int>(value:6), new NetworkVariable<int>(value: 6) };
     public static event Action OnTurnEnd;
     public CinemachineVirtualCamera vCamera;
     public Camera mainCam;
@@ -75,17 +75,18 @@ public class NetCPlayer : NetworkBehaviour
             NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().playerInventory = GetComponent<PlayerInventory>();
             NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().StartCreateCard();
             WasdServerRpc();
-            
-            print(extraLifeCount.Count);
-            print(extraLifeCount[extraLifeCount.Count-1]);
         }
         
         playerHand = NetGameMana.Instance.playerHand;
+        if(IsHost)
+        {
+            
+        }
     }
     [ServerRpc]
     void WasdServerRpc()
     {
-        extraLifeCount.Add(extraLife);
+        
     }
     void Update()
     {
@@ -185,7 +186,7 @@ public class NetCPlayer : NetworkBehaviour
     [ServerRpc]
     void AddExtraLifeServerRpc(int index,int num)//돌 생성 시 index는 0:검돌1:흰돌, num은 -1로 호출해야뒤~
     {
-        extraLifeCount[index]+=num;
+        extraLifeCount[index].Value+=num;
     }
 
     void PlayerActionMing()
@@ -244,7 +245,7 @@ public class NetCPlayer : NetworkBehaviour
                 
             case ActivedSkill.create:
 
-                if (extraLifeCount[isHostTurn.Value ? 0 : 1] > 0)
+                if (extraLifeCount[isHostTurn.Value ? 0 : 1].Value > 0)
                 {
                 inputpos = new Vector3(inputpos.x, 10, inputpos.z);
                 Transform spawnedObj = Instantiate(StonePrefs[isHostTurn.Value ? 0 : 1], inputpos, Quaternion.identity);

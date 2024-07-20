@@ -18,7 +18,7 @@ public class LifeUI : NetworkBehaviour
     public void ChangeLifeServerRpc()
     {
         SizeAndMove(blackExtraLife, NetCPlayer.extraLifeCount[0].Value);
-        SizeAndMove(blackExtraLife, NetCPlayer.extraLifeCount[1].Value);
+        SizeAndMove(whiteExtrLife, NetCPlayer.extraLifeCount[1].Value);
         SizeAndMove(blackLife, NetCPlayer.stones[0].Count);
         SizeAndMove(whiteLife, NetCPlayer.stones[1].Count);
     }
@@ -29,12 +29,12 @@ public class LifeUI : NetworkBehaviour
     public void ChangeLife()
     {
         
-        {
+        
         SizeAndMove(blackExtraLife, NetCPlayer.extraLifeCount[0].Value);
-        SizeAndMove(blackExtraLife, NetCPlayer.extraLifeCount[1].Value);
+        SizeAndMove(whiteExtrLife, NetCPlayer.extraLifeCount[1].Value);
         SizeAndMove(blackLife, NetCPlayer.stones[0].Count);
         SizeAndMove(whiteLife, NetCPlayer.stones[1].Count);
-        }
+        
         print(NetCPlayer.extraLifeCount[0].Value);
     }
 

@@ -15,7 +15,7 @@ public class NetGameMana: MonoBehaviour
 
     public LifeUI LifeUI;
     
-    //public GameObject playerHand;
+    public GameObject playerHand;
     
     public TestLobby relayMana;
 
