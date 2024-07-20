@@ -41,7 +41,7 @@ public abstract class Skill : MonoBehaviour
         {
             netPlayerStone.Actions -= OnEndTurn;
             print("ended skill effect");
-            OnDeregisterEvent();
+            OnDeregisterEvent(netPlayerStone);
         }
         endTurnAmount--;
         if(endTurnAmount <= 0)
@@ -49,7 +49,7 @@ public abstract class Skill : MonoBehaviour
             Deregister();
         }
     }
-    protected virtual void OnDeregisterEvent()
+    protected virtual void OnDeregisterEvent(NetPlayerStone netPlayerStone)
     {
 
     }
