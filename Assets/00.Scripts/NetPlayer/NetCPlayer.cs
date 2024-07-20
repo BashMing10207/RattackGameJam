@@ -160,7 +160,13 @@ public class NetCPlayer : NetworkBehaviour
                 Vector3 forceInput = (Input.mousePosition - tempMousePos);
                 float magnitude = forceInput.magnitude;
                 magnitude = Mathf.Clamp(magnitude, 0, 1000);
-                WhatActionServerRpc(Input.mousePosition,forceInput, magnitude,activedSkill);
+
+                RaycastHit hit;
+                if (Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition), out hit))
+                {
+                    Vector3 mousepos = hit.point;
+                    WhatActionServerRpc(mousepos, forceInput, magnitude, activedSkill);
+                }
                 //print(forceInput.normalized);
                 lineRenderer.enabled = false;
             }
@@ -168,7 +174,7 @@ public class NetCPlayer : NetworkBehaviour
 
     }
     [ServerRpc]
-    void WhatActionServerRpc(Vector3 Inputpos,Vector3 forceInput, float magnitude,ActivedSkill whatSkill)
+    void WhatActionServerRpc(Vector3 inputpos,Vector3 forceInput, float magnitude,ActivedSkill whatSkill)
     {
         switch ((whatSkill))
         {
@@ -178,14 +184,10 @@ public class NetCPlayer : NetworkBehaviour
                 
             case ActivedSkill.create:
 
-                RaycastHit hit;
-                if (Physics.Raycast(mainCam.ScreenPointToRay(Inputpos), out hit))
-                {
-                Vector3 mousepos = hit.point;
-                mousepos = new Vector3(mousepos.x, 10, mousepos.z);
-                Transform spawnedObj = Instantiate(StonePrefs[isHostTurn.Value ? 0 : 1], mousepos, Quaternion.identity);
+                inputpos = new Vector3(inputpos.x, 10, inputpos.z);
+                Transform spawnedObj = Instantiate(StonePrefs[isHostTurn.Value ? 0 : 1], inputpos, Quaternion.identity);
                 spawnedObj.GetComponent<NetworkObject>().Spawn(true);
-                }
+                
                 break;
             case ActivedSkill.fireball:
                 NetGameMana.INSTANCE.pool.Give(fireball, transform).GetComponent<Projectile>()

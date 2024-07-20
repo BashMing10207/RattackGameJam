@@ -5,19 +5,22 @@ using UnityEngine.UI;
 
 public class SkillCardUI : MonoBehaviour
 {
-    //public cardSo cardData;
+    public SO_CardAsset cardData;
     
     public Image cardSprite;
     public TextMeshProUGUI cardText;
 
 
-    private void OnEnable()
-    {
-        CardSetting();
-    }
 
     private void CardSetting()
     {
-        //so랑 연결해서 ㅇㅇㅇ...
+        cardSprite.sprite = cardData.cardImage;
+        cardText.SetText(cardData.description);
+    }
+
+    public void SetCardData(SO_CardAsset newCardData)
+    {
+        cardData = newCardData;
+        CardSetting();
     }
 }

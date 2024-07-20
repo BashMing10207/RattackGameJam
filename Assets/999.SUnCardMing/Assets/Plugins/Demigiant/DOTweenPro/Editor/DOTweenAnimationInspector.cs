@@ -151,7 +151,7 @@ namespace DG.DOTweenEditor
             "Shake/Position", "Shake/Rotation", "Shake/Scale",
             "Camera/Aspect", "Camera/BackgroundColor", "Camera/FieldOfView", "Camera/OrthoSize", "Camera/PixelRect", "Camera/Rect"
         };
-        static string[] _animationTypeNoSlashes; // _AnimationType list without slashes in values
+        static string[] _animationTypeNoSlashes; // _AnimationType skillList without slashes in values
         static string[] _datString; // String representation of DOTweenAnimation enum (here for caching reasons)
 
         DOTweenAnimation _src;
