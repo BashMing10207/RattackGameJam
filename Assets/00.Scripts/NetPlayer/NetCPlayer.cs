@@ -41,13 +41,13 @@ public class NetCPlayer : NetworkBehaviour
         //JoinEvent.INSTANCE.SetActive(false);
         NetControlUI.INSTANCE.OnJoin(TestLobby.CODE);
 
-        vCamera = NetGameMana.INSTANCE.GetComponentInChildren<CinemachineVirtualCamera>();
+        vCamera = NetGameMana.Instance.GetComponentInChildren<CinemachineVirtualCamera>();
         //if (NetGameMana.INSTANCE.player != null)
         //{
         //    Destroy(vCamera);
         //    Destroy(Camera.main.GetComponent<CinemachineBrain>());
         //}
-        NetGameMana.INSTANCE.player = this;
+        NetGameMana.Instance.player = this;
         mainCam = Camera.main;
   
         lineRenderer = mainCam.GetComponentInChildren<LineRenderer>();
