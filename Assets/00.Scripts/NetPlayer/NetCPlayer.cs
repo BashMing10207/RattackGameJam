@@ -15,7 +15,7 @@ public class NetCPlayer : NetworkBehaviour
 {
     public static NetworkVariable<bool> isHostTurn = new NetworkVariable<bool>(value:true);
     public static NetworkVariable<int> currentNum = new NetworkVariable<int>(value:0);
-    public List<NetPlayerStone>[] stones = new List<NetPlayerStone>[2] {new List<NetPlayerStone>(), new List<NetPlayerStone>()};
+    public static List<NetPlayerStone>[] stones = new List<NetPlayerStone>[2] {new List<NetPlayerStone>(), new List<NetPlayerStone>()};
     public CinemachineVirtualCamera vCamera;
     public Camera mainCam;
     public bool isActionSelected = false;
@@ -38,13 +38,15 @@ public class NetCPlayer : NetworkBehaviour
         //JoinEvent.INSTANCE.SetActive(false);
         NetControlUI.INSTANCE.OnJoin(TestLobby.CODE);
 
-        if(NetGameMana.INSTANCE.player != null)
-        {
-            stones = NetGameMana.INSTANCE.player.stones;
-        }
+        vCamera = NetGameMana.INSTANCE.GetComponentInChildren<CinemachineVirtualCamera>();
+        //if (NetGameMana.INSTANCE.player != null)
+        //{
+        //    Destroy(vCamera);
+        //    Destroy(Camera.main.GetComponent<CinemachineBrain>());
+        //}
         NetGameMana.INSTANCE.player = this;
         mainCam = Camera.main;
-        vCamera = NetGameMana.INSTANCE.GetComponentInChildren<CinemachineVirtualCamera>();
+  
         lineRenderer = mainCam.GetComponentInChildren<LineRenderer>();
 
     }
@@ -107,14 +109,26 @@ public class NetCPlayer : NetworkBehaviour
     [ServerRpc]
     void CamChangeServerRpc()
     {
+        SetOutline(false);
         currentNum.Value = (currentNum.Value + 1) % stones[isHostTurn.Value? 0:1].Count;
+        vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
+        vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
+        SetOutline(true);
         //ÀÎµ¦½º ¹øÈ£ ¹Ù²Ù±â
-        CamChangeClientRpc();
     }
 
     [ClientRpc]
     void CamChangeClientRpc()
     {
+        SetOutline(false);
+        vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value-1].pivot;
+        vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value-1].pivot;
+        SetOutline(true);
+    }
+
+    void FuckeCode()
+    {
+
         vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
         vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
         SetOutline(true);
@@ -123,8 +137,9 @@ public class NetCPlayer : NetworkBehaviour
     void CamChange()
     {
         SetOutline(false);
-
         CamChangeServerRpc();
+
+        Invoke(nameof(FuckeCode), 0.1f);
         //Ä«¸Þ¶ó ÆÈ·Î¿ì-·è¾Ü ¹Ù²Ù±â
     }
     [ServerRpc]

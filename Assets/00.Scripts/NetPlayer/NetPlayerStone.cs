@@ -16,7 +16,7 @@ public class NetPlayerStone : NetStone
     {
         if (NetGameMana.H_ISMULTI())
         {
-            NetGameMana.INSTANCE.player.stones[isHost?0:1].Add(this);
+            NetCPlayer.stones[isHost?0:1].Add(this);
         }
         else
         {
@@ -35,7 +35,7 @@ public class NetPlayerStone : NetStone
     {
         if (NetGameMana.H_ISMULTI())
         {
-            NetGameMana.INSTANCE.player.stones[isHost ? 0 : 1].Remove(this);
+            NetCPlayer.stones[isHost ? 0 : 1].Remove(this);
         }
         else
         {
