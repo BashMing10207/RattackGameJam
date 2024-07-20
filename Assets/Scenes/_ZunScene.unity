@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71b59ae2a4dfb5b4fb9a46f48e705e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stone: {fileID: 0}
   so_Card: {fileID: 11400000, guid: e5d5ffae010e9a8459f720395787a4a6, type: 2}
   skillCoolDown: 0
 --- !u!1 &501678802
@@ -669,8 +670,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a21806af048a64f84508091322129d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stone: {fileID: 0}
   so_Card: {fileID: 11400000, guid: fdd9b76277525c745993b8f4855eb43f, type: 2}
   skillCoolDown: 0
+  explosionRadius: 0
+  whatIsStone:
+    serializedVersion: 2
+    m_Bits: 0
+  iceMaterial: {fileID: 0}
+  _originMaterial: {fileID: 0}
 --- !u!1 &1995689629
 GameObject:
   m_ObjectHideFlags: 3
