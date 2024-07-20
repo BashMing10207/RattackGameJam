@@ -1,21 +1,24 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 using TMPro;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class CardInHand : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
+public class CardInHand : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerDownHandler
 {
     public Skills Skills;
     private RectTransform rectTransform;
-
+    
     public Image cardImage;
     public TextMeshProUGUI description;
     
     [SerializeField] private float maxYPos;
     [SerializeField] private float minYPos;
+
+    public Action<Skill> onRemove;
+    public List<RectTransform> posList;
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -36,6 +39,15 @@ public class CardInHand : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         cardImage.sprite = soCardAsset.cardImage;
         description.SetText(soCardAsset.description);
     }
-    
-    
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        onRemove.Invoke(NetGameMana.Instance.skillManager.GetSkill(Skills));
+        
+        posList.Remove(this.GetComponent<RectTransform>());
+        
+        
+        
+        Destroy(gameObject);
+    }
 }

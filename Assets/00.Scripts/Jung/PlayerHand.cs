@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,23 +10,39 @@ public class PlayerHand : MonoBehaviour
     public PlayerInventory PlayerInventory;
     
     public GameObject cardInHandPrefab;
-    public float startPosX;
-        
+    public List<RectTransform> cardPosList = new List<RectTransform>();
+    
+    private void OnEnable()
+    {
+        PlayerInventory.OnInventoryChange += HandleSortCardInHand;
+    }
+
+    private void OnDisable()
+    {
+        PlayerInventory.OnInventoryChange -= HandleSortCardInHand;
+    }
+
+    public void HandleSortCardInHand()
+    {
+        for (int i = -1; i < cardPosList.Count - 1; i++)
+        {
+            cardPosList[i + 1].GetComponent<RectTransform>().DOAnchorPosX(i * 325, 1.2f);
+        }
+    }
+
     private void Start()
     {
-        CreateCard();
+        StartCreateCard();
     }
     
-    private void CreateCard()
+    private void StartCreateCard()
     {
-        for (int i = -1; i < 2; i++)
+        for (int i = 0; i < 3; i++)
         {
-            GameObject newCard = Instantiate(cardInHandPrefab, transform);
-
             Array values = System.Enum.GetValues(typeof(Skills));
             Skills newSkill;
             bool isDuplicate;
-
+            
             do
             {
                 int randomIndex = Random.Range(0, values.Length - 1);
@@ -40,14 +58,21 @@ public class PlayerHand : MonoBehaviour
                     }
                 }
             } while (isDuplicate);
-
-            newCard.GetComponent<RectTransform>().DOAnchorPosX(startPosX * i, 1.2f);
-            newCard.GetComponent<CardInHand>().Skills = newSkill;
             
-            SettingCardUI(newSkill, newCard);
-
-            PlayerInventory.TryAddSkill(NetGameMana.Instance.skillManager.GetSkill(newSkill));
+            CreateCard(newSkill);
         }
+    }
+
+    public void CreateCard(Skills newSkill)
+    {
+        GameObject newCard = Instantiate(cardInHandPrefab, transform);
+        CardInHand cardInHand = newCard.GetComponent<CardInHand>();
+        
+        cardInHand.Skills = newSkill;
+        cardInHand.onRemove += PlayerInventory.TryRemoveSkill;
+        cardInHand.posList = cardPosList;
+        
+        AddCard(newSkill, newCard);
     }
 
     private static void SettingCardUI(Skills newSkill, GameObject newCard)
@@ -55,4 +80,14 @@ public class PlayerHand : MonoBehaviour
         SO_CardAsset cardSo = NetGameMana.Instance.skillManager.GetSkill(newSkill).GetCardSO;
         newCard.GetComponent<CardInHand>().SetCard(cardSo);
     }
+    
+    private void AddCard(Skills newSkill,GameObject newCard)
+    {
+        SettingCardUI(newSkill, newCard);
+        cardPosList.Add(newCard.GetComponent<RectTransform>());
+        
+        PlayerInventory.TryAddSkill(NetGameMana.Instance.skillManager.GetSkill(newSkill));
+    }
+    
+    
 }
