@@ -8,8 +8,7 @@ public abstract class Skill : MonoBehaviour
     [SerializeField] private SO_CardAsset so_Card;
     public SO_CardAsset GetCardSO => so_Card;
 
-
-    private List<ParticleSystem> particleSystems;
+    public GameObject effect;
     [SerializeField] private int endTurnAmount;
     [SerializeField] private int endTurnAmountMax;
     protected virtual void Awake()
@@ -30,10 +29,11 @@ public abstract class Skill : MonoBehaviour
             netPlayerStone.Actions += OnEndTurn;
         }
         else if (endTurnAmount <= 0) endTurnAmount = endTurnAmountMax;
-        foreach (var item in particleSystems)
-        {
-            item.Play();
-        }
+        
+        GameObject _effect = Instantiate(effect , netPlayerStone.transform.position , Quaternion.identity);
+        ParticleSystem particleSystem = _effect.GetComponent<ParticleSystem>();
+        particleSystem.Play();
+        
     }
     protected virtual void OnEndTurn(NetPlayerStone netPlayerStone)
     {

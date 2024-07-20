@@ -1,10 +1,9 @@
 using Cinemachine;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.EventSystems;
 
 public enum ActivedSkill
 {
@@ -43,21 +42,11 @@ public class NetCPlayer : NetworkBehaviour
     
     void Awake()
     {
-        
         NetControlUI.INSTANCE.OnJoin(TestLobby.CODE);
-        vCamera = NetGameMana.Instance.GetComponentInChildren<CinemachineVirtualCamera>();
-        //if (NetGameMana.INSTANCE.player != null)
-        //{
-        //    Destroy(vCamera);
-        //    Destroy(Camera.main.GetComponent<CinemachineBrain>());
-        //}
-        mainCam = Camera.main;
-  
-      
         
+        vCamera = NetGameMana.Instance.GetComponentInChildren<CinemachineVirtualCamera>();
+        mainCam = Camera.main;
         lineRenderer = mainCam.GetComponentInChildren<LineRenderer>();
-
-      
     }
 
     private void Start()
@@ -66,7 +55,7 @@ public class NetCPlayer : NetworkBehaviour
         {
             NetGameMana.Instance.player = this;
             NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().playerInventory = GetComponent<PlayerInventory>();
-            NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().Start2();
+            NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().StartCreateCard();
         }
         
         playerHand = NetGameMana.Instance.playerHand;
@@ -136,6 +125,7 @@ public class NetCPlayer : NetworkBehaviour
     {
         SetOutline(false);
         currentNum.Value = (currentNum.Value + 1) % stones[isHostTurn.Value? 0:1].Count;
+        
         //vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
         //vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
         SetOutline(true);

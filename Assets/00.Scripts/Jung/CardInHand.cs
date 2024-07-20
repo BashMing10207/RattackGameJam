@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
@@ -28,7 +29,7 @@ public class CardInHand : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     {
         rectTransform.DOAnchorPosY(maxYPos , 0.4f);
     }
-
+   
     public void OnPointerExit(PointerEventData eventData)
     {
         rectTransform.DOAnchorPosY(minYPos , 0.4f);
@@ -45,7 +46,9 @@ public class CardInHand : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         onRemove.Invoke(NetGameMana.Instance.skillManager.GetSkill(Skills));
         
         posList.Remove(this.GetComponent<RectTransform>());
-        
+
+        Skill skill = NetGameMana.Instance.skillManager.GetSkill(Skills);
+        //skill.TryActivateSkill();
         
         
         Destroy(gameObject);
