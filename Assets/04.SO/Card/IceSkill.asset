@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: "\uC544\uC774\uC2A4\uC544\uC774\uC2A4\uC544\uC774\uC2DC\uB824~"
   cardImage: {fileID: 1231930525, guid: 659294e9f570a3a4aa6bf98c63c7fb6b, type: 3}
+  projectileSO: {fileID: 11400000, guid: 27013773e18189b4eb6b3be30a78d63c, type: 2}

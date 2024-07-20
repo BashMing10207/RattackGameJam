@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -19,8 +18,15 @@ public class NetCPlayer : NetworkBehaviour
 {
     public static NetworkVariable<bool> isHostTurn = new NetworkVariable<bool>(value: true);
     public static NetworkVariable<int> currentNum = new NetworkVariable<int>(value: 0);
+    public static NetPlayerStone GetCurrentStone
+    {
+        get
+        {
+            return stones[isHostTurn.Value ? 0 : 1][currentNum.Value];
+        }
+    }
     public static List<NetPlayerStone>[] stones = new List<NetPlayerStone>[2] { new List<NetPlayerStone>(), new List<NetPlayerStone>() };
-    public static NetworkVariable<int>[] extraLifeCount = new NetworkVariable<int>[2] { new NetworkVariable<int>(value:6), new NetworkVariable<int>(value: 6) };
+    public static NetworkList<int> extraLifeCount = new NetworkList<int>();
     public static event Action OnTurnEnd;
     public CinemachineVirtualCamera vCamera;
     public Camera mainCam;
@@ -28,8 +34,8 @@ public class NetCPlayer : NetworkBehaviour
 
     public Transform[] StonePrefs;
 
-    public ProjectileSO fireball;//임시 테스트용
-
+    //public ProjectileSO fireball;//임시 테스트용
+    public static ProjectileSO ProjectileToShoot { get; set; }
     ActivedSkill activedSkill;
 
     public int extraLife = 3;
@@ -66,27 +72,27 @@ public class NetCPlayer : NetworkBehaviour
         if(IsOwner)
         {
             NetGameMana.Instance.player = this;
-            //NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().playerInventory = GetComponent<PlayerInventory>();
-            //NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().Start2();
+            NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().playerInventory = GetComponent<PlayerInventory>();
+            NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().StartCreateCard();
             WasdServerRpc();
+            
+            print(extraLifeCount.Count);
+            print(extraLifeCount[extraLifeCount.Count-1]);
         }
-        if (IsHost)
-        {
-            extraLifeCount[isHostTurn.Value ? 0 : 1].Value = extraLife;
-        }
-        //playerHand = NetGameMana.Instance.playerHand;
+        
+        playerHand = NetGameMana.Instance.playerHand;
     }
     [ServerRpc]
     void WasdServerRpc()
     {
-
+        extraLifeCount.Add(extraLife);
     }
     void Update()
     {
         if (!IsOwner)
             return;
-
-        //print(extraLifeCount[isHostTurn.Value ? 0 : 1].Value);
+        
+        
         NetworkUpdate();
     }
 
@@ -171,6 +177,7 @@ public class NetCPlayer : NetworkBehaviour
     void EndTurnServerRpc()
     {
         OnTurnEnd?.Invoke();
+        ProjectileToShoot = null;
         isHostTurn.Value = !isHostTurn.Value;
         currentNum.Value = 0;
         CamChange();
@@ -178,8 +185,7 @@ public class NetCPlayer : NetworkBehaviour
     [ServerRpc]
     void AddExtraLifeServerRpc(int index,int num)//돌 생성 시 index는 0:검돌1:흰돌, num은 -1로 호출해야뒤~
     {
-        extraLifeCount[index].Value +=num;
-        print(extraLifeCount[index]);
+        extraLifeCount[index]+=num;
     }
 
     void PlayerActionMing()
@@ -238,24 +244,38 @@ public class NetCPlayer : NetworkBehaviour
                 
             case ActivedSkill.create:
 
-                if (extraLifeCount[isHostTurn.Value ? 0 : 1].Value > 0)
+                if (extraLifeCount[isHostTurn.Value ? 0 : 1] > 0)
                 {
                 inputpos = new Vector3(inputpos.x, 10, inputpos.z);
                 Transform spawnedObj = Instantiate(StonePrefs[isHostTurn.Value ? 0 : 1], inputpos, Quaternion.identity);
                 spawnedObj.GetComponent<NetworkObject>().Spawn(true);
-
-                    //AddExtraLifeServerRpc(isHostTurn.Value ? 0 : 1, -1);
-                    extraLifeCount[isHostTurn.Value ? 0 : 1].Value --;
+                AddExtraLifeServerRpc(isHostTurn.Value ? 0 : 1, -1);
                 }
 
                 break;
             case ActivedSkill.fireball:
+
                 //NetGameMana.INSTANCE.pool.GiveServerRpc(fireball, transform).GetComponent<Projectile>()
-                GameObject projectile1 = Instantiate(fireball.gameObj);
-                projectile1.GetComponent<Projectile>()
-                    .Init(new Vector3(forceInput.x, 0, forceInput.y).normalized + Vector3.up * 0.5f, stones[isHostTurn.Value ? 0 : 1][currentNum.Value].transform.position + Vector3.up * 1.5f,
-                    magnitude / 600);
-                projectile1.GetComponent<NetworkObject>().Spawn(true);
+                print("n3");
+                if(ProjectileToShoot != null)
+                {
+                    print("prok is not null");
+                    GameObject projectile1 = Instantiate(ProjectileToShoot.gameObj);
+                    projectile1.GetComponent<Projectile>()
+                        .Init(new Vector3(forceInput.x, 0, forceInput.y).normalized + Vector3.up * 0.5f, stones[isHostTurn.Value ? 0 : 1][currentNum.Value].transform.position + Vector3.up * 1.5f,
+                        magnitude / 600);
+                    projectile1.GetComponent<NetworkObject>().Spawn(true);
+                }
+                else
+                {
+                    print("proj is null");
+                }
+
+                //GameObject projectile1 = Instantiate(fireball.gameObj);
+                //projectile1.GetComponent<Projectile>()
+                //    .Init(new Vector3(forceInput.x, 0, forceInput.y).normalized + Vector3.up * 0.5f, stones[isHostTurn.Value ? 0 : 1][currentNum.Value].transform.position + Vector3.up * 1.5f,
+                //    magnitude / 600);
+                //projectile1.GetComponent<NetworkObject>().Spawn(true);
 
                 break;
             case ActivedSkill.arrow:

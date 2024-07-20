@@ -8,7 +8,7 @@ public enum Skills : int
     FireGaySkill,
     Gravity,
     PowerUp,
-    Projectile,
+    Energy,
     ALL
 }
 

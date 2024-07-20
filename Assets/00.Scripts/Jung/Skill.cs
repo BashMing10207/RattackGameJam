@@ -1,57 +1,59 @@
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.UIElements;
-
 public abstract class Skill : NetworkBehaviour
 {
-    public Transform stone;
+    [SerializeField] private bool isUiUse;
+    public bool GetIsUIUse => isUiUse;
     [SerializeField] private SO_CardAsset so_Card;
     public SO_CardAsset GetCardSO => so_Card;
+    public GameObject effect;
 
-
-    private List<ParticleSystem> particleSystems;
+    [Header("-")]
     [SerializeField] private int endTurnAmount;
     [SerializeField] private int endTurnAmountMax;
+    public Transform stone;
+    
     protected virtual void Awake()
     {
         endTurnAmount = endTurnAmountMax;
         if(name == "_")
             name = ToString();
     }
+    public virtual void UIUse(NetPlayerStone netPlayerStone)
+    {
+        //logic
+    }
+    public void ThrowableInit()
+    {
+        NetCPlayer.ProjectileToShoot = so_Card.projectileSO;
+        print("proj init");
+    }
+    #region bf
     public void TryActivateSkill(NetPlayerStone netPlayerStone)
     {
-        ActivateSkill(netPlayerStone);
+        //ActivateSkill(netPlayerStone);
+        
     }
-
-        public void TryActivateSkill(NetPlayerStone netPlayerStone,Vector3 forceInput, float magnitude)
-        {
-            AccleateSKilll(netPlayerStone,forceInput, magnitude);
-        }
-
+    
     protected virtual void ActivateSkill(NetPlayerStone netPlayerStone)
     {
         if(endTurnAmount == endTurnAmountMax)
         {
-            netPlayerStone.Actions += OnEndTurn;
+            //netPlayerStone.Actions += OnEndTurn;
         }
         else if (endTurnAmount <= 0) endTurnAmount = endTurnAmountMax;
-        foreach (var item in particleSystems)
-        {
-            item.Play();
-        }
+        
+        GameObject _effect = Instantiate(effect, netPlayerStone.transform.position, Quaternion.identity);
+        ParticleSystem particleSystem = _effect.GetComponent<ParticleSystem>();
+        particleSystem.Play();
     }
-    protected virtual void AccleateSKilll(NetPlayerStone netPlayerStone, Vector3 forceInput, float magnitude)
-    {
-        //FuckYou;
-    }
-    protected virtual void OnEndTurn(NetPlayerStone netPlayerStone)
+    protected virtual void OnEndTurn()
     {
         void Deregister()
         {
-            netPlayerStone.Actions -= OnEndTurn;
+            //netPlayerStone.Actions -= OnEndTurn;
             print("ended skill effect");
-            OnDeregisterEvent(netPlayerStone);
+            //OnDeregisterEvent(netPlayerStone);
         }
         endTurnAmount--;
         if(endTurnAmount <= 0)
@@ -63,5 +65,5 @@ public abstract class Skill : NetworkBehaviour
     {
 
     }
-
+    #endregion
 }

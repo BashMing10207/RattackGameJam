@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,13 +11,6 @@ public class PlayerHand : MonoBehaviour
     public GameObject cardInHandPrefab;
     public List<RectTransform> cardPosList = new List<RectTransform>();
     
-    
-    private void Awake()
-    {
-      
-        //playerInventory = net
-    }
-
     private void OnEnable()
     {
         PlayerInventory.OnInventoryChange += HandleSortCardInHand;
@@ -37,13 +28,7 @@ public class PlayerHand : MonoBehaviour
             cardPosList[i + 1].GetComponent<RectTransform>().DOAnchorPosX(i * 325, 1.2f);
         }
     }
-
-    public void Start2()
-    {
-        StartCreateCard();
-    }
-    
-    private void StartCreateCard()
+    public void StartCreateCard()
     {
         for (int i = 0; i < 3; i++)
         {
