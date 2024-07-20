@@ -44,9 +44,11 @@ public class CardInHand : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         Skill skill = NetGameMana.Instance.skillManager.GetSkill(Skills);
-        
-        skill.TryActivateSkill(NetCPlayer.GetCurrentStone);
-        
+
+        if (skill.GetIsUIUse)
+            skill.UIUse(NetCPlayer.GetCurrentStone);
+        else skill.ThrowableInit();
+
         //posList.Remove(this.GetComponent<RectTransform>());
         //onRemove.Invoke(NetGameMana.Instance.skillManager.GetSkill(Skills));
         

@@ -773,11 +773,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb131ca11eaf65c46a57f7f506dd36c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stone: {fileID: 0}
+  isUiUse: 0
   so_Card: {fileID: 11400000, guid: fdd9b76277525c745993b8f4855eb43f, type: 2}
-  effect: {fileID: 0}
+  effectOnSpawn: {fileID: 0}
   endTurnAmount: 0
   endTurnAmountMax: 0
+  stone: {fileID: 0}
 --- !u!1 &281176267
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,7 +1002,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6021955, y: -0.000000006868345, z: 0.000000005180802, w: 0.79834867}
+  m_LocalRotation: {x: 0.6021955, y: 0.0000000068683463, z: -0.000000005180803, w: 0.79834867}
   m_LocalPosition: {x: 9.78, y: 35.775, z: 22.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11484,7 +11485,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 701260412}
-  - component: {fileID: 701260413}
+  - component: {fileID: 701260415}
   - component: {fileID: 701260414}
   m_Layer: 0
   m_Name: '-'
@@ -11508,27 +11509,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1318358769}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &701260413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 701260411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2822763132
-  InScenePlacedSourceGlobalObjectIdHash: 0
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!114 &701260414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11541,11 +11521,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf8d7f9fae8d364483143a12aa2e368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stone: {fileID: 0}
+  isUiUse: 0
   so_Card: {fileID: 11400000, guid: 6b92d6521ebb0fc4b961b7ed9ff3d182, type: 2}
-  effect: {fileID: 8034366155771868473, guid: 1555864de61977f45b9ef4b9316b2372, type: 3}
+  effectOnSpawn: {fileID: 0}
   endTurnAmount: 0
   endTurnAmountMax: 0
+  stone: {fileID: 0}
+--- !u!114 &701260415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701260411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 1230958765
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &721100821
 GameObject:
   m_ObjectHideFlags: 0
@@ -32022,11 +32024,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71b59ae2a4dfb5b4fb9a46f48e705e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stone: {fileID: 0}
+  isUiUse: 0
   so_Card: {fileID: 11400000, guid: e5d5ffae010e9a8459f720395787a4a6, type: 2}
-  effect: {fileID: 0}
+  effectOnSpawn: {fileID: 0}
   endTurnAmount: 0
   endTurnAmountMax: 0
+  stone: {fileID: 0}
 --- !u!1 &1124186015
 GameObject:
   m_ObjectHideFlags: 0
@@ -32071,11 +32074,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf13041d428c0fc48948ef3b81439a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stone: {fileID: 0}
+  isUiUse: 1
   so_Card: {fileID: 11400000, guid: 3d84063a07aaf02429d25375d611b912, type: 2}
-  effect: {fileID: 0}
+  effectOnSpawn: {fileID: 0}
   endTurnAmount: 0
   endTurnAmountMax: 0
+  stone: {fileID: 0}
 --- !u!1 &1203506701
 GameObject:
   m_ObjectHideFlags: 0
@@ -52708,7 +52712,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817903815}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6021955, y: -0.000000006868345, z: 0.000000005180802, w: 0.79834867}
+  m_LocalRotation: {x: 0.6021955, y: 0.0000000068683463, z: -0.000000005180803, w: 0.79834867}
   m_LocalPosition: {x: 39.17332, y: 38.662884, z: -36.895485}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

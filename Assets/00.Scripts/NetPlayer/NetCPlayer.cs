@@ -34,8 +34,8 @@ public class NetCPlayer : NetworkBehaviour
 
     public Transform[] StonePrefs;
 
-    public ProjectileSO fireball;//임시 테스트용
-
+    //public ProjectileSO fireball;//임시 테스트용
+    public static ProjectileSO ProjectileToShoot { get; set; }
     ActivedSkill activedSkill;
 
     public int extraLife = 3;
@@ -177,6 +177,7 @@ public class NetCPlayer : NetworkBehaviour
     void EndTurnServerRpc()
     {
         OnTurnEnd?.Invoke();
+        ProjectileToShoot = null;
         isHostTurn.Value = !isHostTurn.Value;
         currentNum.Value = 0;
         CamChange();
@@ -253,12 +254,28 @@ public class NetCPlayer : NetworkBehaviour
 
                 break;
             case ActivedSkill.fireball:
+
                 //NetGameMana.INSTANCE.pool.GiveServerRpc(fireball, transform).GetComponent<Projectile>()
-                GameObject projectile1 = Instantiate(fireball.gameObj);
-                projectile1.GetComponent<Projectile>()
-                    .Init(new Vector3(forceInput.x, 0, forceInput.y).normalized + Vector3.up * 0.5f, stones[isHostTurn.Value ? 0 : 1][currentNum.Value].transform.position + Vector3.up * 1.5f,
-                    magnitude / 600);
-                projectile1.GetComponent<NetworkObject>().Spawn(true);
+                print("n3");
+                if(ProjectileToShoot != null)
+                {
+                    print("prok is not null");
+                    GameObject projectile1 = Instantiate(ProjectileToShoot.gameObj);
+                    projectile1.GetComponent<Projectile>()
+                        .Init(new Vector3(forceInput.x, 0, forceInput.y).normalized + Vector3.up * 0.5f, stones[isHostTurn.Value ? 0 : 1][currentNum.Value].transform.position + Vector3.up * 1.5f,
+                        magnitude / 600);
+                    projectile1.GetComponent<NetworkObject>().Spawn(true);
+                }
+                else
+                {
+                    print("proj is null");
+                }
+
+                //GameObject projectile1 = Instantiate(fireball.gameObj);
+                //projectile1.GetComponent<Projectile>()
+                //    .Init(new Vector3(forceInput.x, 0, forceInput.y).normalized + Vector3.up * 0.5f, stones[isHostTurn.Value ? 0 : 1][currentNum.Value].transform.position + Vector3.up * 1.5f,
+                //    magnitude / 600);
+                //projectile1.GetComponent<NetworkObject>().Spawn(true);
 
                 break;
             case ActivedSkill.arrow:

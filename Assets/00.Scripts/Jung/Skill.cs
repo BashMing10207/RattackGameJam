@@ -1,15 +1,17 @@
 using Unity.Netcode;
 using UnityEngine;
-
 public abstract class Skill : NetworkBehaviour
 {
-    public Transform stone;
+    [SerializeField] private bool isUiUse;
+    public bool GetIsUIUse => isUiUse;
     [SerializeField] private SO_CardAsset so_Card;
     public SO_CardAsset GetCardSO => so_Card;
-
     public GameObject effect;
+
+    [Header("-")]
     [SerializeField] private int endTurnAmount;
     [SerializeField] private int endTurnAmountMax;
+    public Transform stone;
     
     protected virtual void Awake()
     {
@@ -17,10 +19,19 @@ public abstract class Skill : NetworkBehaviour
         if(name == "_")
             name = ToString();
     }
+    public virtual void UIUse(NetPlayerStone netPlayerStone)
+    {
+        //logic
+    }
+    public void ThrowableInit()
+    {
+        NetCPlayer.ProjectileToShoot = so_Card.projectileSO;
+        print("proj init");
+    }
+    #region bf
     public void TryActivateSkill(NetPlayerStone netPlayerStone)
     {
-        ActivateSkill(netPlayerStone);
-                
+        //ActivateSkill(netPlayerStone);
         
     }
     
@@ -28,7 +39,7 @@ public abstract class Skill : NetworkBehaviour
     {
         if(endTurnAmount == endTurnAmountMax)
         {
-            netPlayerStone.Actions += OnEndTurn;
+            //netPlayerStone.Actions += OnEndTurn;
         }
         else if (endTurnAmount <= 0) endTurnAmount = endTurnAmountMax;
         
@@ -54,5 +65,5 @@ public abstract class Skill : NetworkBehaviour
     {
 
     }
-
+    #endregion
 }
