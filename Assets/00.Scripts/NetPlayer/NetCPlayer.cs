@@ -50,6 +50,8 @@ public class NetCPlayer : NetworkBehaviour
 
         lineRenderer = mainCam.GetComponentInChildren<LineRenderer>();
         
+        
+        
     }
 
     void Update()
