@@ -27,7 +27,7 @@ public class NetPlayerStone : NetStone
         }
         else
         {
-            NetGameMana.INSTANCE.playerOff.stones.Add(this);
+            NetGameMana.Instance.playerOff.stones.Add(this);
         }
         
         outLine.SetActive(false);
@@ -51,7 +51,7 @@ public class NetPlayerStone : NetStone
         }
         else
         {
-            NetGameMana.INSTANCE.playerOff.stones.Remove(this);
+            NetGameMana.Instance.playerOff.stones.Remove(this);
         }
     }
 

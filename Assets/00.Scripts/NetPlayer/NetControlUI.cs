@@ -20,7 +20,7 @@ public class NetControlUI : MonoBehaviour
 
         host.onClick.AddListener(() =>
         {
-            NetGameMana.INSTANCE.relayMana.HostStartMing();
+            NetGameMana.Instance.relayMana.HostStartMing();
             
             //Invoke(nameof(DelayOut), 1f);
             //NetworkManager.Singleton.StartHost();
@@ -28,7 +28,7 @@ public class NetControlUI : MonoBehaviour
         });
         client.onClick.AddListener(() =>
         {
-            NetGameMana.INSTANCE.relayMana.JoinMing(CodeInput.text);
+            NetGameMana.Instance.relayMana.JoinMing(CodeInput.text);
             //NetworkManager.Singleton.StartClient();
         });
     }

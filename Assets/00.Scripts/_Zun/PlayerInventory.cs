@@ -7,7 +7,7 @@ public class PlayerInventory : MonoBehaviour
 {
     public const int maxInventoryAmount = 3;
     private readonly List<Skill> skills = new();
-    public List<Skill> GrtSkills => skills;
+    public List<Skill> GetSkills => skills;
     public static Action OnInventoryChange;
     /// <summary>
     /// adds skill to inventory if possible

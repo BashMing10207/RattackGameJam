@@ -16,7 +16,7 @@ public class TestLobby : MonoBehaviour
 
     void Awake()
     {
-        NetGameMana.INSTANCE.relayMana = this;
+        NetGameMana.Instance.relayMana = this;
     }
     async void Start()
     {

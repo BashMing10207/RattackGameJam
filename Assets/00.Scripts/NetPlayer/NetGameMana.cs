@@ -8,7 +8,7 @@ public class NetGameMana: MonoBehaviour
 
     static bool ISMUTIPLAYER;
 
-    public static NetGameMana INSTANCE;
+    public static NetGameMana Instance;
     
     public NetCPlayer player;
     public Player playerOff;
@@ -18,10 +18,10 @@ public class NetGameMana: MonoBehaviour
     public TestLobby relayMana;
     private void Awake()
     {
-        INSTANCE = this;
+        Instance = this;
         ISMUTIPLAYER = isMultiplayer;
     }
-    public static bool H_ISMULTI()//ÇÚ..µé...?
+    public static bool H_ISMULTI()//í•¸..ë“¤...?
     {
         return ISMUTIPLAYER;
     }

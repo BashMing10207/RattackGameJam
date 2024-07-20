@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public Camera mainCam;
     public bool isActionSelected = false;
 
-    public ProjectileSO fireball;//ÀÓ½Ã Å×½ºÆ®¿ë
+    public ProjectileSO fireball;//ì„ì‹œ í…ŒìŠ¤íŠ¸ìš©
 
     public int currentNum = 0;
     public enum ActivedSkill
@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
 
     void OnEnable()
     {
-        NetGameMana.INSTANCE.playerOff = this;
+        NetGameMana.Instance.playerOff = this;
         //OLDGameMana.instance.player = this;
         mainCam = Camera.main;
 
@@ -63,10 +63,10 @@ public class Player : MonoBehaviour
     void Camchange()
     {
         currentNum = (currentNum + 1) % stones.Count;
-        //ÀÎµ¦½º ¹øÈ£ ¹Ù²Ù±â
+        //ì¸ë±ìŠ¤ ë²ˆí˜¸ ë°”ê¾¸ê¸°
         camera2.LookAt = stones[currentNum].pivot;
         camera2.Follow = stones[currentNum].pivot;
-        //Ä«¸Ş¶ó ÆÈ·Î¿ì-·è¾Ü ¹Ù²Ù±â
+        //ì¹´ë©”ë¼ íŒ”ë¡œìš°-ë£©ì•³ ë°”ê¾¸ê¸°
     }
 
     private void PlayerActionMing()
