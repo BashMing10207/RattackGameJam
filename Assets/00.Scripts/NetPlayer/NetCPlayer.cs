@@ -18,6 +18,13 @@ public class NetCPlayer : NetworkBehaviour
 {
     public static NetworkVariable<bool> isHostTurn = new NetworkVariable<bool>(value: true);
     public static NetworkVariable<int> currentNum = new NetworkVariable<int>(value: 0);
+    public static NetPlayerStone GetCurrentStone
+    {
+        get
+        {
+            return stones[isHostTurn.Value ? 0 : 1][currentNum.Value];
+        }
+    }
     public static List<NetPlayerStone>[] stones = new List<NetPlayerStone>[2] { new List<NetPlayerStone>(), new List<NetPlayerStone>() };
     public static NetworkList<int> extraLifeCount = new NetworkList<int>();
     public static event Action OnTurnEnd;

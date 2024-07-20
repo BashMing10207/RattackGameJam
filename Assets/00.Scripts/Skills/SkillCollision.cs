@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillCollision : MonoBehaviour
+public abstract class SkillCollision : MonoBehaviour
 {
     private readonly List<Collision> activatedCollisions = new();
     private void OnCollisionEnter(Collision collision)
@@ -21,5 +21,9 @@ public class SkillCollision : MonoBehaviour
     }
     protected virtual void OnEnter(NetPlayerStone netPlayerStone)
     {
+    }
+    public virtual void OnExit(NetPlayerStone netPlayerStone)
+    {
+
     }
 }
