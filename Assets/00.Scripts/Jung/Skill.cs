@@ -46,6 +46,8 @@ public abstract class Skill : NetworkBehaviour
         GameObject _effect = Instantiate(effect, netPlayerStone.transform.position, Quaternion.identity);
         ParticleSystem particleSystem = _effect.GetComponent<ParticleSystem>();
         particleSystem.Play();
+        
+        Destroy(_effect, 3);
     }
     protected virtual void OnEndTurn()
     {
