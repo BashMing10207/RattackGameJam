@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public abstract class Skill : MonoBehaviour
+public abstract class Skill : NetworkBehaviour
 {
     public Transform stone;
     [SerializeField] private SO_CardAsset so_Card;
@@ -22,6 +23,11 @@ public abstract class Skill : MonoBehaviour
         ActivateSkill(netPlayerStone);
     }
 
+        public void TryActivateSkill(NetPlayerStone netPlayerStone,Vector3 forceInput, float magnitude)
+        {
+            AccleateSKilll(netPlayerStone,forceInput, magnitude);
+        }
+
     protected virtual void ActivateSkill(NetPlayerStone netPlayerStone)
     {
         if(endTurnAmount == endTurnAmountMax)
@@ -36,6 +42,10 @@ public abstract class Skill : MonoBehaviour
         
         
         
+    }
+    protected virtual void AccleateSKilll(NetPlayerStone netPlayerStone, Vector3 forceInput, float magnitude)
+    {
+        //FuckYou;
     }
     protected virtual void OnEndTurn(NetPlayerStone netPlayerStone)
     {
@@ -55,4 +65,5 @@ public abstract class Skill : MonoBehaviour
     {
 
     }
+
 }

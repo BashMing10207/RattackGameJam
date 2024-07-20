@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Jung_2.unity
-    guid: 881d42f91aca84d4089f70e4bcb693da
+    path: Assets/Scenes/Bash_NET.unity
+    guid: 0d30ef64b9d5c0b4d85e4bc13555c1ac
   - enabled: 1
     path: Assets/Scenes/NETSC.unity
     guid: 37890bc13bcd52144a8640160092ee7d
@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Jung.unity
     guid: 4caf93bae0af73e46a060dd9ddf160c7
   - enabled: 1
-    path: Assets/Scenes/Bash_NET.unity
-    guid: 0d30ef64b9d5c0b4d85e4bc13555c1ac
+    path: Assets/Scenes/Jung_2.unity
+    guid: 881d42f91aca84d4089f70e4bcb693da
   m_configObjects: {}
