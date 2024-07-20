@@ -4,8 +4,5 @@ using UnityEngine;
 
 public class FireGaySkill : Skill
 {
-    protected override void ActivateSkill(NetPlayerStone netPlayerStone)
-    {
-        base.ActivateSkill(netPlayerStone);
-    }
+    
 }
