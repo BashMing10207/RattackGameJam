@@ -13,7 +13,7 @@ public class EnergySkill : Skill
 
         foreach (var item in cols)
         {
-            Rigidbody rb = item.GetComponent<Rigidbody>();
+            Rigidbody rb = item.GetComponentInParent<Rigidbody>();
             if (rb != null)
             {
                 rb.AddExplosionForce(50f, item.transform.position + Vector3.forward, 50f);
