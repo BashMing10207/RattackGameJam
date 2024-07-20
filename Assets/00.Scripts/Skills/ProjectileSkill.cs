@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using Unity.Netcode;
 using UnityEngine;
 
-public class ProjectileSkill : SkillV2
+public class ProjectileSkill : MonoBehaviour
 {
     //public override void AccleateSKilll(NetPlayerStone netPlayerStone, Vector3 forceInput, float magnitude)
     //{

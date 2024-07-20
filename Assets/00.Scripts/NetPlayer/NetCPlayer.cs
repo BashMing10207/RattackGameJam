@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -19,7 +20,7 @@ public class NetCPlayer : NetworkBehaviour
     public static NetworkVariable<bool> isHostTurn = new NetworkVariable<bool>(value: true);
     public static NetworkVariable<int> currentNum = new NetworkVariable<int>(value: 0);
     public static List<NetPlayerStone>[] stones = new List<NetPlayerStone>[2] { new List<NetPlayerStone>(), new List<NetPlayerStone>() };
-    public static NetworkList<int> extraLifeCount = new NetworkList<int>();
+    public static NetworkVariable<int>[] extraLifeCount = new NetworkVariable<int>[2] { new NetworkVariable<int>(value:6), new NetworkVariable<int>(value: 6) };
     public static event Action OnTurnEnd;
     public CinemachineVirtualCamera vCamera;
     public Camera mainCam;
@@ -65,26 +66,27 @@ public class NetCPlayer : NetworkBehaviour
         if(IsOwner)
         {
             NetGameMana.Instance.player = this;
-            NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().playerInventory = GetComponent<PlayerInventory>();
-            NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().Start2();
+            //NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().playerInventory = GetComponent<PlayerInventory>();
+            //NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().Start2();
             WasdServerRpc();
-            print(extraLifeCount.Count);
-            print(extraLifeCount[extraLifeCount.Count-1]);
         }
-        
-        playerHand = NetGameMana.Instance.playerHand;
+        if (IsHost)
+        {
+            extraLifeCount[isHostTurn.Value ? 0 : 1].Value = extraLife;
+        }
+        //playerHand = NetGameMana.Instance.playerHand;
     }
     [ServerRpc]
     void WasdServerRpc()
     {
-        extraLifeCount.Add(extraLife);
+
     }
     void Update()
     {
         if (!IsOwner)
             return;
-        
-        
+
+        //print(extraLifeCount[isHostTurn.Value ? 0 : 1].Value);
         NetworkUpdate();
     }
 
@@ -176,7 +178,8 @@ public class NetCPlayer : NetworkBehaviour
     [ServerRpc]
     void AddExtraLifeServerRpc(int index,int num)//돌 생성 시 index는 0:검돌1:흰돌, num은 -1로 호출해야뒤~
     {
-        extraLifeCount[index]+=num;
+        extraLifeCount[index].Value +=num;
+        print(extraLifeCount[index]);
     }
 
     void PlayerActionMing()
@@ -235,12 +238,14 @@ public class NetCPlayer : NetworkBehaviour
                 
             case ActivedSkill.create:
 
-                if (extraLifeCount[isHostTurn.Value ? 0 : 1] > 0)
+                if (extraLifeCount[isHostTurn.Value ? 0 : 1].Value > 0)
                 {
                 inputpos = new Vector3(inputpos.x, 10, inputpos.z);
                 Transform spawnedObj = Instantiate(StonePrefs[isHostTurn.Value ? 0 : 1], inputpos, Quaternion.identity);
                 spawnedObj.GetComponent<NetworkObject>().Spawn(true);
-                AddExtraLifeServerRpc(isHostTurn.Value ? 0 : 1, -1);
+
+                    //AddExtraLifeServerRpc(isHostTurn.Value ? 0 : 1, -1);
+                    extraLifeCount[isHostTurn.Value ? 0 : 1].Value --;
                 }
 
                 break;
