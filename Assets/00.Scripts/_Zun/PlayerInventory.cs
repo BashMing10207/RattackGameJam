@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +8,7 @@ public class PlayerInventory : MonoBehaviour
     private readonly List<Skill> skills = new();
     public List<Skill> GetSkills => skills;
     public static Action OnInventoryChange;
+
     /// <summary>
     /// adds skill to inventory if possible
     /// </summary>
@@ -27,6 +27,7 @@ public class PlayerInventory : MonoBehaviour
         {
             Debug.LogError($"skill is already max number {maxInventoryAmount}");
         }
+        
     }
     /// <summary>
     /// removes skill from inventory if possible
