@@ -12,7 +12,7 @@ using Unity.Netcode.Transports.UTP;
 
 public class TestLobby : MonoBehaviour
 {
-    string _code;
+    public static string CODE;
 
     void Awake()
     {
@@ -27,10 +27,9 @@ public class TestLobby : MonoBehaviour
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
     }
     
-    public string HostStartMing()
+    public void HostStartMing()
     {
         CreateRelay();
-        return _code;
     }
 
     public void JoinMing(string id)
@@ -44,8 +43,7 @@ public class TestLobby : MonoBehaviour
         {
         Allocation allocation =  await RelayService.Instance.CreateAllocationAsync(2);
 
-            _code = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
-
+            CODE = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetHostRelayData(
                 allocation.RelayServer.IpV4,
                 (ushort)allocation.RelayServer.Port,
