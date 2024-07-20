@@ -1,4 +1,5 @@
 using System;
+using Unity.Netcode;
 using UnityEngine;
 
 public class NetPlayerStone : NetStone
@@ -47,14 +48,32 @@ public class NetPlayerStone : NetStone
         NetCPlayer.OnTurnEnd -= HandleOnTurn;
         if (NetGameMana.H_ISMULTI())
         {
+            if (IsOwner)
+            {
             NetCPlayer.stones[isHost ? 0 : 1].Remove(this);
+            }
         }
         else
         {
             NetGameMana.Instance.playerOff.stones.Remove(this);
         }
-    }
+        if (IsOwner)
+        {
+            if (NetCPlayer.stones[isHost ? 0 : 1].Count < 0)
+            {
+                NetGameMana.Instance.win.SetActive(true);
+                winServerRpc();
+                NetGameMana.Instance.win.SetActive(false);
+                NetGameMana.Instance.lose.SetActive(true);
+            }
 
+        }
+    }
+    [ServerRpc]
+    void winServerRpc()
+    {
+        NetGameMana.Instance.win.SetActive(true);
+    }
     private void Update()
     {
         //print("ming");

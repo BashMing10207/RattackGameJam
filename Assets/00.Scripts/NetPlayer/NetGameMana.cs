@@ -20,6 +20,8 @@ public class NetGameMana: MonoBehaviour
     
     public TestLobby relayMana;
 
+    public GameObject win, lose;
+
     //SkillManaV2 skillManaV2;
     private void Awake()
     {
