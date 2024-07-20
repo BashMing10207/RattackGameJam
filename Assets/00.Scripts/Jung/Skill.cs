@@ -16,7 +16,7 @@ public abstract class Skill : MonoBehaviour
         if(name == "_")
             name = ToString();
     }
-    public virtual void TryActivateSkill()
+    public virtual void TryActivateSkill(NetPlayerStone netPlayerStone)
     {
         ActivateSkill();
     }

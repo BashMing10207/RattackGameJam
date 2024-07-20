@@ -37,8 +37,5 @@ public class SkillManager : MonoBehaviour
     {
         return skillDic[skillToGet];
     }
-    public Action GetSkillAction(Skills skillToGet)
-    {
-        return skillDic[skillToGet].TryActivateSkill;
-    }
+
 }
