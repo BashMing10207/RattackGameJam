@@ -47,4 +47,8 @@ public class PlayerInventory : MonoBehaviour
             Debug.LogError($"list doesn't have a skill to remove");
         }
     }
+    public void UseSkill(int index, NetPlayerStone netStone)
+    {
+        skills[index].TryActivateSkill(netStone);
+    }
 }
