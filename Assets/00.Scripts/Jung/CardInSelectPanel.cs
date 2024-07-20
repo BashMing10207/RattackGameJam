@@ -1,15 +1,18 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.Serialization;
 
-public class SkillCardUI : MonoBehaviour
+public class CardInSelectPanel : MonoBehaviour
 {
+    public Skills skillEnum;
+    
     public Image cardSprite;
     public TextMeshProUGUI cardText;
-    public Skills skillEnum;
+    
     private Skill _skill;
+
     private void CardSetting()
     {
         _skill = NetGameMana.Instance.skillManager.GetSkill(skillEnum);
@@ -27,13 +30,13 @@ public class SkillCardUI : MonoBehaviour
         
         CardSetting();
     }
-
-
     private void SelectBtn()
     {
-        Transform grandParent = transform.parent.transform.parent;
-        grandParent.GetComponent<CardSelectPanel>().PlayerInventory.TryAddSkill(_skill);        
         
+        
+        Transform grandParent = transform.parent.transform.parent;
+        
+        #region Dotween
         Sequence seq = DOTween.Sequence();
         seq.AppendCallback(() =>
         {
@@ -47,6 +50,11 @@ public class SkillCardUI : MonoBehaviour
         {
             grandParent.gameObject.SetActive(false);
         });
+        
 
+        #endregion
+
+        
     }
+
 }

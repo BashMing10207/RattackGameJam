@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -12,23 +13,46 @@ public struct skillAndCard
 
 public class CardSelectPanel : MonoBehaviour
 {
-    public PlayerInventory PlayerInventory;
+    public PlayerHand PlayerHand;
+    
     public GameObject cardPrefab;
     public Transform pivot;
 
     private List<skillAndCard> cards = new List<skillAndCard>();
+
+    public bool isSelect;
+    
     private void Start()
     {
         CreateCard();
     }
+
+    private void Update()
+    {
+        if (isSelect)
+        {
+            isSelect = false;
+            foreach (var item in cards)
+            {
+                item.Card.GetComponent<Button>().onClick.RemoveAllListeners();
+            }
+        }
+    }
+
+    [ContextMenu("응어아잇")]
+    public void OnSelectPanel()
+    {
+        isSelect = false;
+        gameObject.SetActive(true);
+        CreateCard();
+    }
     
-    [ContextMenu("Test")]
     private void CreateCard()
     {
         CardClear();
         
         int posX = 325;
-                
+        
         for (int i = -1; i < 2; i++)
         {
             GameObject newCard = Instantiate(cardPrefab, pivot.transform);
@@ -36,7 +60,7 @@ public class CardSelectPanel : MonoBehaviour
             System.Array values = System.Enum.GetValues(typeof(Skills));
             Skills newSkill;
             bool isDuplicate;
-
+            
             do
             {
                 int randomIndex = Random.Range(0, values.Length - 1);
@@ -53,16 +77,29 @@ public class CardSelectPanel : MonoBehaviour
                 }
             } while (isDuplicate);
 
-            newCard.GetComponent<SkillCardUI>().SetSkillData(newSkill);
+            AddList(newSkill, newCard);
+            
+            newCard.GetComponent<CardInSelectPanel>().SetSkillData(newSkill);
             newCard.GetComponent<RectTransform>().DOAnchorPosX(posX * i, 1.2f);
-            
-            skillAndCard newSkillAndCard;
-            newSkillAndCard.Skill = newSkill;
-            newSkillAndCard.Card = newCard;
-            
-            cards.Add(newSkillAndCard);
+            newCard.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                isSelect = true;
+                PlayerHand.CreateCard(newSkill);
+            });
         }
     }
+    
+    
+    
+    private void AddList(Skills newSkill, GameObject newCard)
+    {
+        skillAndCard newSkillAndCard;
+        newSkillAndCard.Skill = newSkill;
+        newSkillAndCard.Card = newCard;
+
+        cards.Add(newSkillAndCard);
+    }
+
     private void CardClear()
     {
         if (cards.Count > 0)
