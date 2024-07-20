@@ -12,9 +12,10 @@ public class NetGameMana: MonoBehaviour
     public Player playerOff;
     public NetPool pool;
     public SkillManager skillManager;
+
+    public LifeUI LifeUI;
     
     public GameObject playerHand;
-    public PlayerInventory PlayerInventory;
     
     public TestLobby relayMana;
     private void Awake()

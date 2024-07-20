@@ -8,11 +8,17 @@ using Random = UnityEngine.Random;
 
 public class PlayerHand : MonoBehaviour
 {
-    public PlayerInventory PlayerInventory;
+    public PlayerInventory playerInventory;
     
     public GameObject cardInHandPrefab;
     public List<RectTransform> cardPosList = new List<RectTransform>();
-
+    
+    
+    private void Awake()
+    {
+      
+        //playerInventory = net
+    }
 
     private void OnEnable()
     {
@@ -32,7 +38,7 @@ public class PlayerHand : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void Start2()
     {
         StartCreateCard();
     }
@@ -51,7 +57,7 @@ public class PlayerHand : MonoBehaviour
                 newSkill = (Skills)values.GetValue(randomIndex);
                 isDuplicate = false;
                 
-                foreach (var skill in PlayerInventory.GetSkills)
+                foreach (var skill in playerInventory.GetSkills)
                 {
                     if (NetGameMana.Instance.skillManager.GetSkill(newSkill) == skill)
                     {
@@ -71,7 +77,7 @@ public class PlayerHand : MonoBehaviour
         CardInHand cardInHand = newCard.GetComponent<CardInHand>();
         
         cardInHand.Skills = newSkill;
-        cardInHand.onRemove += PlayerInventory.TryRemoveSkill;
+        cardInHand.onRemove += playerInventory.TryRemoveSkill;
         cardInHand.posList = cardPosList;
         
         AddCard(newSkill, newCard);
@@ -88,7 +94,7 @@ public class PlayerHand : MonoBehaviour
         SettingCardUI(newSkill, newCard);
         cardPosList.Add(newCard.GetComponent<RectTransform>());
         
-        PlayerInventory.TryAddSkill(NetGameMana.Instance.skillManager.GetSkill(newSkill));
+        playerInventory.TryAddSkill(NetGameMana.Instance.skillManager.GetSkill(newSkill));
     }
     
     
