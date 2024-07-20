@@ -4,7 +4,7 @@ using Unity.Netcode;
 using UnityEngine;
 
 
-public class NetPool : MonoBehaviour
+public class NetPool : NetworkBehaviour
 {
     public Dictionary<ProjectileSO,Stack<GameObject>>poolMing = new Dictionary<ProjectileSO,Stack<GameObject>>();
 
@@ -20,6 +20,7 @@ public class NetPool : MonoBehaviour
         poolMing[prjtype].Push(target);
         target.SetActive(false);
     }
+
     public GameObject Give(ProjectileSO prjtype, Transform targetTr)
     {
         Create(prjtype);

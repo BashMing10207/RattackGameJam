@@ -78,10 +78,11 @@ public class NetCPlayer : NetworkBehaviour
         {
             BaseAction();//¼÷Ã»
             PlayerActionMing();
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+
+        if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.LeftShift))
         {
             EndTurnServerRpc();
+        }
         }
     }
 
@@ -109,20 +110,25 @@ public class NetCPlayer : NetworkBehaviour
     [ServerRpc]
     void CamChangeServerRpc()
     {
-        SetOutline(false);
-        
         currentNum.Value = (currentNum.Value + 1) % stones[isHostTurn.Value? 0:1].Count;
         //ÀÎµ¦½º ¹øÈ£ ¹Ù²Ù±â
+        CamChangeClientRpc();
+    }
+
+    [ClientRpc]
+    void CamChangeClientRpc()
+    {
+        vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
+        vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
+        SetOutline(true);
     }
 
     void CamChange()
     {
-        CamChangeServerRpc();
-        vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
-        vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
-        //Ä«¸Þ¶ó ÆÈ·Î¿ì-·è¾Ü ¹Ù²Ù±â
+        SetOutline(false);
 
-        SetOutline(true);
+        CamChangeServerRpc();
+        //Ä«¸Þ¶ó ÆÈ·Î¿ì-·è¾Ü ¹Ù²Ù±â
     }
     [ServerRpc]
     void EndTurnServerRpc()
@@ -194,9 +200,12 @@ public class NetCPlayer : NetworkBehaviour
                 
                 break;
             case ActivedSkill.fireball:
-                NetGameMana.INSTANCE.pool.Give(fireball, transform).GetComponent<Projectile>()
+                //NetGameMana.INSTANCE.pool.GiveServerRpc(fireball, transform).GetComponent<Projectile>()
+                GameObject projectile1 = Instantiate(fireball.gameObj);
+                projectile1.GetComponent<Projectile>()
                     .Init(new Vector3(forceInput.x, 0, forceInput.y).normalized + Vector3.up * 0.5f, stones[isHostTurn.Value ? 0 : 1][currentNum.Value].transform.position + Vector3.up * 1.5f,
                     magnitude / 600);
+                projectile1.GetComponent<NetworkObject>().Spawn(true);
 
                 break;
             case ActivedSkill.arrow:
