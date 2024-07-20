@@ -12,7 +12,7 @@ public class NetPlayerStone : NetStone
     public float health;
     public float weight;
     public float force;
-    public event Action<NetPlayerStone> Actions;
+    public event Action Actions;
     
     private void Awake()
     {
@@ -35,7 +35,7 @@ public class NetPlayerStone : NetStone
     private void HandleOnTurn()
     {
         print("HandleOnTurn");
-        Actions?.Invoke(this);
+        Actions?.Invoke();
     }
     public override void ForceMove(Vector3 dir, float power, float damage)
     {
