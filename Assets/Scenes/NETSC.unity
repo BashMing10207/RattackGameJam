@@ -242,7 +242,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   host: {fileID: 220828849}
   client: {fileID: 980287299}
-  INSTANCE: {fileID: 0}
   CodeInput: {fileID: 1803120119}
   CodeOut: {fileID: 1964602098}
   roomUI: {fileID: 1490202225}
@@ -1008,7 +1007,7 @@ MonoBehaviour:
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
   m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
+  m_BlendUpdateMethod: 0
   m_DefaultBlend:
     m_Style: 1
     m_Time: 2
@@ -1231,7 +1230,7 @@ MonoBehaviour:
   m_MaxPayloadSize: 6144
   m_HeartbeatTimeoutMS: 500
   m_ConnectTimeoutMS: 1000
-  m_MaxConnectAttempts: 60
+  m_MaxConnectAttempts: 50
   m_DisconnectTimeoutMS: 30000
   ConnectionData:
     Address: 127.0.0.1
