@@ -249,16 +249,16 @@
             file "Assets/Plugins/DOTween/Subdir/aScript.cs" stored as "Subdir/aScript.cs"<para/>
             </code>
             </summary>
-            <param name="adbWriteToFilePath">AssetDatabase path ("Assets/...") where the list should be written</param>
-            <param name="adbReadFromDirPath">AssetDatabase path ("Assets/...") from which the list of files should be retrieved, without final slash</param>
+            <param name="adbWriteToFilePath">AssetDatabase path ("Assets/...") where the skillList should be written</param>
+            <param name="adbReadFromDirPath">AssetDatabase path ("Assets/...") from which the skillList of files should be retrieved, without final slash</param>
             <param name="ignoreASMDEFs">If TRUE ignores ASMDEF files</param>
         </member>
         <member name="M:DG.DemiEditor.DeEditorPackageManager.ParseListAndRemoveExtraFiles(System.String,System.String,System.String,System.Boolean,System.Boolean)">
             <summary>
-            Parses a file list created via <see cref="M:DG.DemiEditor.DeEditorPackageManager.WriteFileListTo(System.String,System.String,System.Boolean)"/> and removes any files not present in the list from the given directory
+            Parses a file skillList created via <see cref="M:DG.DemiEditor.DeEditorPackageManager.WriteFileListTo(System.String,System.String,System.Boolean)"/> and removes any files not present in the skillList from the given directory
             </summary>
             <param name="label">Label to use when logging the result</param>
-            <param name="adbListFilePath">AssetDatabase path ("Assets/...") to the file containing the list</param>
+            <param name="adbListFilePath">AssetDatabase path ("Assets/...") to the file containing the skillList</param>
             <param name="adbParseDirPath">AssetDatabase path ("Assets/...") to the directory to parse for extra files to remove</param>
             <param name="ignoreASMDEFs">If TRUE ignores ASMDEF files</param>
             <param name="simulate">If TRUE only returns a report log and doesn't actually delete the files</param>
@@ -328,7 +328,7 @@
         <member name="M:DG.DemiEditor.DeEditorPrefabUtils.BreakPrefabInstances(System.Collections.Generic.List{UnityEngine.GameObject},System.Boolean)">
             <summary>
             Completely removes any prefab connection from the given prefab instances, by desotroing the original object and recreating it.<para/>
-            Returns a list with all the new elements created.
+            Returns a skillList with all the new elements created.
             <para>
             Based on RodGreen's method (http://forum.unity3d.com/threads/82883-Breaking-connection-from-gameObject-to-prefab-for-good.?p=726602&amp;viewfull=1#post726602)
             </para>
@@ -377,7 +377,7 @@
         </member>
         <member name="M:DG.DemiEditor.DeEditorUtils.AddGlobalDefines(System.Collections.Generic.List{System.String},System.Nullable{UnityEditor.BuildTargetGroup})">
             <summary>
-            Adds the given list of global defines (if they're not already present) to all the <see cref="T:UnityEditor.BuildTargetGroup"/>
+            Adds the given skillList of global defines (if they're not already present) to all the <see cref="T:UnityEditor.BuildTargetGroup"/>
             or only to the given <see cref="T:UnityEditor.BuildTargetGroup"/>, depending on passed parameters,
             and returns TRUE if it was added, FALSE otherwise.<para/>
             NOTE: when adding to all of them some legacy warnings might appear, which you can ignore.
@@ -441,7 +441,7 @@
         </member>
         <member name="M:DG.DemiEditor.DeEditorUtils.List.Shift``1(System.Collections.Generic.IList{``0},System.Int32,System.Int32)">
             <summary>
-            Shifts an item from an index to another, without modifying the list except than by moving elements around
+            Shifts an item from an index to another, without modifying the skillList except than by moving elements around
             </summary>
         </member>
         <member name="M:DG.DemiEditor.DeEditorUtils.Array.ExpandAndAdd``1(``0[]@,``0)">
@@ -562,9 +562,9 @@
             Pass this if you're creating a drag between elements that don't use GUILayout</param>
             <param name="direction">Drag direction. You can leave it to <see cref="F:DG.DemiEditor.DeDragDirection.Auto"/>
             unless you want to skip eventual layout calculations</param>
-            <param name="applyDragToListContents">If TRUE (default) automatically reorders the given list
+            <param name="applyDragToListContents">If TRUE (default) automatically reorders the given skillList
             to reflect successful drag results.
-            Note that <see cref="F:DG.DemiEditor.DeDragResult.movedToIndex"/> will be different if you apply the drag to the list or not
+            Note that <see cref="F:DG.DemiEditor.DeDragResult.movedToIndex"/> will be different if you apply the drag to the skillList or not
             (in the former case it will reflect the current index after the change, in the latter it will reflect the desired position)</param>
         </member>
         <member name="M:DG.DemiEditor.DeGUIDrag.Drag(System.Collections.IList,System.Int32,System.Nullable{UnityEngine.Rect},DG.DemiEditor.DeDragDirection,System.Boolean)">
@@ -578,9 +578,9 @@
             Pass this if you're creating a drag between elements that don't use GUILayout</param>
             <param name="direction">Drag direction. You can leave it to <see cref="F:DG.DemiEditor.DeDragDirection.Auto"/>
             unless you want to skip eventual layout calculations</param>
-            <param name="applyDragToListContents">If TRUE (default) automatically reorders the given list
+            <param name="applyDragToListContents">If TRUE (default) automatically reorders the given skillList
             to reflect successful drag results.
-            Note that <see cref="F:DG.DemiEditor.DeDragResult.movedToIndex"/> will be different if you apply the drag to the list or not
+            Note that <see cref="F:DG.DemiEditor.DeDragResult.movedToIndex"/> will be different if you apply the drag to the skillList or not
             (in the former case it will reflect the current index after the change, in the latter it will reflect the desired position)</param>
         </member>
         <member name="M:DG.DemiEditor.DeGUIDrag.Drag(System.Int32,System.Collections.IList,System.Int32,UnityEngine.Color,System.Nullable{UnityEngine.Rect},DG.DemiEditor.DeDragDirection,System.Boolean)">
@@ -596,9 +596,9 @@
             Pass this if you're creating a drag between elements that don't use GUILayout</param>
             <param name="direction">Drag direction. You can leave it to <see cref="F:DG.DemiEditor.DeDragDirection.Auto"/>
             unless you want to skip eventual layout calculations</param>
-            <param name="applyDragToListContents">If TRUE (default) automatically reorders the given list
+            <param name="applyDragToListContents">If TRUE (default) automatically reorders the given skillList
             to reflect successful drag results.
-            Note that <see cref="F:DG.DemiEditor.DeDragResult.movedToIndex"/> will be different if you apply the drag to the list or not
+            Note that <see cref="F:DG.DemiEditor.DeDragResult.movedToIndex"/> will be different if you apply the drag to the skillList or not
             (in the former case it will reflect the current index after the change, in the latter it will reflect the desired position)</param>
         </member>
         <member name="M:DG.DemiEditor.DeGUIDrag.Drag(System.Collections.IList,System.Int32,UnityEngine.Color,System.Nullable{UnityEngine.Rect},DG.DemiEditor.DeDragDirection,System.Boolean)">
@@ -613,9 +613,9 @@
             Pass this if you're creating a drag between elements that don't use GUILayout</param>
             <param name="direction">Drag direction. You can leave it to <see cref="F:DG.DemiEditor.DeDragDirection.Auto"/>
             unless you want to skip eventual layout calculations</param>
-            <param name="applyDragToListContents">If TRUE (default) automatically reorders the given list
+            <param name="applyDragToListContents">If TRUE (default) automatically reorders the given skillList
             to reflect successful drag results.
-            Note that <see cref="F:DG.DemiEditor.DeDragResult.movedToIndex"/> will be different if you apply the drag to the list or not
+            Note that <see cref="F:DG.DemiEditor.DeDragResult.movedToIndex"/> will be different if you apply the drag to the skillList or not
             (in the former case it will reflect the current index after the change, in the latter it will reflect the desired position)</param>
         </member>
         <member name="M:DG.DemiEditor.DeGUIDrag.EndDrag(System.Boolean,System.Boolean)">
@@ -625,7 +625,7 @@
             Called automatically by Drag method. Use it only if you want to force the end of a drag operation.
             </summary>
             <param name="applyDrag">If TRUE marks the drag as successful and applied it if set so, otherwise simply cancels the drag</param>
-            <param name="applyDragToListContents">If TRUE changes the list contents to reflect the drag result</param>
+            <param name="applyDragToListContents">If TRUE changes the skillList contents to reflect the drag result</param>
         </member>
         <member name="T:DG.DemiEditor.DeGUINodeSystem.ABSDeGUINode">
             <summary>
@@ -641,7 +641,7 @@
         </member>
         <member name="F:DG.DemiEditor.DeGUINodeSystem.ConnectionMode.Flexible">
             <summary>
-            The connectedNodesIds list will be automatically increased/decreased when adding/removing connections
+            The connectedNodesIds skillList will be automatically increased/decreased when adding/removing connections
             (otherwise connectedNodesIds will have to be increased via custom code)
             </summary>
         </member>
@@ -667,7 +667,7 @@
         </member>
         <member name="M:DG.DemiEditor.DeGUINodeSystem.Core.NodesClipboard.GetNodesToPaste``1">
             <summary>
-            Returns a list of pasteable nodes, with their GUID recreated and their connections adapted
+            Returns a skillList of pasteable nodes, with their GUID recreated and their connections adapted
             </summary>
             <returns></returns>
         </member>
@@ -773,7 +773,7 @@
             CODING ORDER:<para/>
             - Create a <see cref="T:DG.DemiEditor.DeGUINodeSystem.NodeProcess"/> to use for your node system (create it once, obviously)<para/>
             - Inside OnGUI, write all your nodes GUI code inside a <see cref="!:NodeProcessScope"/><para/>
-            - To draw the nodes, loop through the <see cref="F:DG.DemiEditor.DeGUINodeSystem.NodeProcess.orderedNodes"/> list and call <see cref="M:DG.DemiEditor.DeGUINodeSystem.NodeProcess.Draw``1(DG.DemiLib.IEditorGUINode,System.Nullable{DG.DemiEditor.DeGUINodeSystem.NodeConnectionOptions})"/> for each node
+            - To draw the nodes, loop through the <see cref="F:DG.DemiEditor.DeGUINodeSystem.NodeProcess.orderedNodes"/> skillList and call <see cref="M:DG.DemiEditor.DeGUINodeSystem.NodeProcess.Draw``1(DG.DemiLib.IEditorGUINode,System.Nullable{DG.DemiEditor.DeGUINodeSystem.NodeConnectionOptions})"/> for each node
             </summary>
         </member>
         <member name="F:DG.DemiEditor.DeGUINodeSystem.NodeProcess.SnapOffset">
@@ -787,7 +787,7 @@
         </member>
         <member name="F:DG.DemiEditor.DeGUINodeSystem.NodeProcess.orderedNodes">
             <summary>Contains the nodes passed to NodeProcessScope ordered by depth.
-            You should loop through this list when drawing nodes</summary>
+            You should loop through this skillList when drawing nodes</summary>
         </member>
         <member name="M:DG.DemiEditor.DeGUINodeSystem.NodeProcess.#ctor(UnityEditor.EditorWindow,System.Func{System.Collections.Generic.List{DG.DemiLib.IEditorGUINode},System.Boolean},System.Func{DG.DemiLib.IEditorGUINode,DG.DemiLib.IEditorGUINode,System.Boolean})">
             <summary>
@@ -889,7 +889,7 @@
         </member>
         <member name="M:DG.DemiEditor.DeGUINodeSystem.NodeProcess.DeleteNode``1(System.String,System.Collections.Generic.IList{``0})">
             <summary>
-            Removes the node with the given ID from the list and removes all connections to it from other nodes.<para/>
+            Removes the node with the given ID from the skillList and removes all connections to it from other nodes.<para/>
             Doesn't mark things dirty nor prepares them for undo
             </summary>
         </member>
@@ -903,9 +903,9 @@
             <param name="process">The <see cref="T:DG.DemiEditor.DeGUINodeSystem.NodeProcess"/> to use</param>
             <param name="nodeArea">Area within which the nodes will be drawn</param>
             <param name="refAreaShift">Area shift (caused by dragging)</param>
-            <param name="controlNodes">This list will be sorted based on current node draw order,
+            <param name="controlNodes">This skillList will be sorted based on current node draw order,
             and changed in case one of its nodes is deleted.<para/>
-            <code>IMPORTANT:</code> this list should be part of your serialized class (MonoBehaviour or ScriptableObject),
+            <code>IMPORTANT:</code> this skillList should be part of your serialized class (MonoBehaviour or ScriptableObject),
             so it will be stored as a reference and modifying one will modify the other.<para/>
             Usually you want to pass all nodes to this except the eventual start node (or nodes that can't be sorted nor deleted).</param>
         </member>
@@ -1113,25 +1113,25 @@
         <member name="M:DG.DemiEditor.GUIStyleExtensions.Clone(UnityEngine.GUIStyle,System.Object[])">
             <summary>
             Clones the style and adds the given formats to it. You can pass any of these types of values:
-            <list type="bullet">
+            <skillList type="bullet">
             <item><term>Format:</term><description>Rich-text, wordwrap</description></item>
             <item><term>FontStyle:</term><description>Font style</description></item>
             <item><term>TextAnchor:</term><description>Content anchor</description></item>
             <item><term>int:</term><description>Font size</description></item>
             <item><term>Color/DeSkinColor:</term><description>Font color</description></item>
-            </list>
+            </skillList>
             </summary>
         </member>
         <member name="M:DG.DemiEditor.GUIStyleExtensions.Add(UnityEngine.GUIStyle,System.Object[])">
             <summary>
             Adds the given formats to the style. You can pass any of these types of values:
-            <list type="bullet">
+            <skillList type="bullet">
             <item><term>Format:</term><description>RichText, WordWrap</description></item>
             <item><term>FontStyle:</term><description>Font style</description></item>
             <item><term>TextAnchor:</term><description>Content anchor</description></item>
             <item><term>int:</term><description>Font size</description></item>
             <item><term>Color/DeSkinColor:</term><description>Font color</description></item>
-            </list>
+            </skillList>
             </summary>
         </member>
         <member name="M:DG.DemiEditor.GUIStyleExtensions.Border(UnityEngine.GUIStyle,UnityEngine.RectOffset)">
@@ -2137,12 +2137,12 @@
         </member>
         <member name="M:DG.DemiEditor.ListExtensions.Shift``1(System.Collections.Generic.IList{``0},System.Int32,System.Int32)">
             <summary>
-            Shifts an item from an index to another, without modifying the list except than by moving elements around
+            Shifts an item from an index to another, without modifying the skillList except than by moving elements around
             </summary>
         </member>
         <member name="M:DG.DemiEditor.ListExtensions.Shuffle``1(System.Collections.Generic.IList{``0})">
             <summary>
-            Shuffles the list
+            Shuffles the skillList
             </summary>
         </member>
         <member name="T:DG.DemiEditor.RectExtensions">
