@@ -8,6 +8,8 @@ public class Title : MonoBehaviour
     private VisualElement _root;
 
     private Button _startBtn, _settingBtn , _exitBtn;
+
+    public int index;
     
     private void Awake()
     {
@@ -28,13 +30,11 @@ public class Title : MonoBehaviour
     private void HandleExit()
     {
         Application.Quit();
-        Debug.Log("나가기");
     }
 
     private void HandleStart()
     {
-        Debug.Log("시작");
-        //SceneManager.LoadScene("inGame");
+        SceneManager.LoadScene(index);
     }
     
     
