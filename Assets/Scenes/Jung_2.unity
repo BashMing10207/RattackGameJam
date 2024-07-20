@@ -245,6 +245,7 @@ MonoBehaviour:
   CodeInput: {fileID: 1803120119}
   CodeOut: {fileID: 1964602098}
   roomUI: {fileID: 1490202225}
+  gameUI: {fileID: 0}
 --- !u!1 &108924827
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,7 +936,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6021955, y: 0.0000000068683463, z: -0.000000005180803, w: 0.79834867}
+  m_LocalRotation: {x: 0.6021955, y: -0.000000006868345, z: 0.000000005180802, w: 0.79834867}
   m_LocalPosition: {x: 9.78, y: 35.775, z: 22.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11453,6 +11454,8 @@ MonoBehaviour:
   playerOff: {fileID: 0}
   pool: {fileID: 974659289}
   skillManager: {fileID: 0}
+  LifeUI: {fileID: 0}
+  playerHand: {fileID: 0}
   relayMana: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
@@ -37055,6 +37058,7 @@ MonoBehaviour:
   so_Card: {fileID: 11400000, guid: 6b92d6521ebb0fc4b961b7ed9ff3d182, type: 2}
   endTurnAmount: 0
   endTurnAmountMax: 0
+  amount: 0
 --- !u!1 &1490202225
 GameObject:
   m_ObjectHideFlags: 0
@@ -52478,7 +52482,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817903815}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6021955, y: 0.0000000068683463, z: -0.000000005180803, w: 0.79834867}
+  m_LocalRotation: {x: 0.6021955, y: -0.000000006868345, z: 0.000000005180802, w: 0.79834867}
   m_LocalPosition: {x: 39.17332, y: 38.662884, z: -36.895485}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -62572,6 +62576,7 @@ MonoBehaviour:
   so_Card: {fileID: 11400000, guid: 3d84063a07aaf02429d25375d611b912, type: 2}
   endTurnAmount: 0
   endTurnAmountMax: 0
+  amount: 0
 --- !u!1 &1931834190
 GameObject:
   m_ObjectHideFlags: 0
@@ -67853,8 +67858,7 @@ MonoBehaviour:
   isActionSelected: 1
   StonePrefs: []
   fireball: {fileID: 11400000, guid: 27013773e18189b4eb6b3be30a78d63c, type: 2}
-  cardUICanvas: {fileID: 0}
-  PlayerInventory: {fileID: 0}
+  extraLife: 3
   lineRenderer: {fileID: 2074936019}
 --- !u!1 &1983296932
 GameObject:
