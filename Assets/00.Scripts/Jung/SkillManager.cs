@@ -10,6 +10,8 @@ public enum Skills : int
     PowerUp,
     Thunder,
     WeightUp,
+    Bolt,
+    
     ALL
 }
 
