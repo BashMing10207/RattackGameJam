@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NetGameMana: MonoBehaviour
@@ -14,12 +12,17 @@ public class NetGameMana: MonoBehaviour
     public Player playerOff;
     public NetPool pool;
     public SkillManager skillManager;
+
+    public LifeUI LifeUI;
+    
+    public GameObject playerHand;
     
     public TestLobby relayMana;
     private void Awake()
     {
         Instance = this;
         ISMUTIPLAYER = isMultiplayer;
+        
     }
     public static bool H_ISMULTI()//핸..들...?
     {

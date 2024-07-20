@@ -27,6 +27,6 @@
 }
 
 .btn:hover {
-    background-color: rgb(120, 120, 120);
-    color: rgb(120, 120, 120);
+    background-color: rgb(152, 152, 152);
+    color: rgb(219, 219, 219);
 }

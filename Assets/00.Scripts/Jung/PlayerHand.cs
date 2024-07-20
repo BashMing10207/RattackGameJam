@@ -2,16 +2,24 @@ using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class PlayerHand : MonoBehaviour
 {
-    public PlayerInventory PlayerInventory;
+    public PlayerInventory playerInventory;
     
     public GameObject cardInHandPrefab;
     public List<RectTransform> cardPosList = new List<RectTransform>();
     
+    
+    private void Awake()
+    {
+      
+        //playerInventory = net
+    }
+
     private void OnEnable()
     {
         PlayerInventory.OnInventoryChange += HandleSortCardInHand;
@@ -30,7 +38,7 @@ public class PlayerHand : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void Start2()
     {
         StartCreateCard();
     }
@@ -48,10 +56,10 @@ public class PlayerHand : MonoBehaviour
                 int randomIndex = Random.Range(0, values.Length - 1);
                 newSkill = (Skills)values.GetValue(randomIndex);
                 isDuplicate = false;
-
-                foreach (var skil in PlayerInventory.GetSkills)
+                
+                foreach (var skill in playerInventory.GetSkills)
                 {
-                    if (NetGameMana.Instance.skillManager.GetSkill(newSkill) == skil)
+                    if (NetGameMana.Instance.skillManager.GetSkill(newSkill) == skill)
                     {
                         isDuplicate = true;
                         break;
@@ -69,7 +77,7 @@ public class PlayerHand : MonoBehaviour
         CardInHand cardInHand = newCard.GetComponent<CardInHand>();
         
         cardInHand.Skills = newSkill;
-        cardInHand.onRemove += PlayerInventory.TryRemoveSkill;
+        cardInHand.onRemove += playerInventory.TryRemoveSkill;
         cardInHand.posList = cardPosList;
         
         AddCard(newSkill, newCard);
@@ -86,7 +94,7 @@ public class PlayerHand : MonoBehaviour
         SettingCardUI(newSkill, newCard);
         cardPosList.Add(newCard.GetComponent<RectTransform>());
         
-        PlayerInventory.TryAddSkill(NetGameMana.Instance.skillManager.GetSkill(newSkill));
+        playerInventory.TryAddSkill(NetGameMana.Instance.skillManager.GetSkill(newSkill));
     }
     
     
