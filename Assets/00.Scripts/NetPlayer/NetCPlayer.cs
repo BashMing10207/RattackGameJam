@@ -73,14 +73,19 @@ public class NetCPlayer : NetworkBehaviour
         {
             NetGameMana.Instance.player = this;
             NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().playerInventory = GetComponent<PlayerInventory>();
-            NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().StartCreateCard();
-            extraLifeCount.Add(extraLife);
-            print("AddMing");
+            NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().Start2();
+            WasdServerRpc();
+            print(extraLifeCount.Count);
+            print(extraLifeCount[extraLifeCount.Count-1]);
         }
         
         playerHand = NetGameMana.Instance.playerHand;
     }
-
+    [ServerRpc]
+    void WasdServerRpc()
+    {
+        extraLifeCount.Add(extraLife);
+    }
     void Update()
     {
         if (!IsOwner)

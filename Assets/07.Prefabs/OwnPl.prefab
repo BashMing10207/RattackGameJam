@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1297864012
+  GlobalObjectIdHash: 3808499062
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -76,7 +76,7 @@ MonoBehaviour:
   - {fileID: 420992588000295730, guid: 3bf130383a1f2484482cbe4d33834b9d, type: 3}
   - {fileID: 8374199415599942545, guid: 83ca7ac4cc369a5418ea553932a68098, type: 3}
   fireball: {fileID: 11400000, guid: 27013773e18189b4eb6b3be30a78d63c, type: 2}
-  extraLife: 3
+  extraLife: 6
   lineRenderer: {fileID: 0}
 --- !u!82 &6111607868703319255
 AudioSource:

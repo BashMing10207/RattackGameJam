@@ -24,7 +24,7 @@ public class LifeUI : NetworkBehaviour
     }
     public void ChangeLife()
     {
-        if(NetCPlayer.extraLifeCount.Count>0 && NetCPlayer.stones[0].Count>0 && NetCPlayer.stones[1].Count > 0)
+        if(NetCPlayer.extraLifeCount.Count>0)
         {
         SizeAndMove(blackExtraLife, NetCPlayer.extraLifeCount[0]);
         SizeAndMove(blackExtraLife, NetCPlayer.extraLifeCount[1]);
