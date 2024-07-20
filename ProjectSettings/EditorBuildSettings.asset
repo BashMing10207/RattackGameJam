@@ -7,8 +7,5 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/NETSC.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
-    path: Assets/Scenes/ZAZONESHIM/SinglePlayer.unity
-    guid: b35b3441978c10c418a24487aba0dddc
+    guid: 37890bc13bcd52144a8640160092ee7d
   m_configObjects: {}
