@@ -196,9 +196,12 @@ public class NetCPlayer : NetworkBehaviour
                 
                 break;
             case ActivedSkill.fireball:
-                NetGameMana.INSTANCE.pool.Give(fireball, transform).GetComponent<Projectile>()
+                //NetGameMana.INSTANCE.pool.GiveServerRpc(fireball, transform).GetComponent<Projectile>()
+                GameObject projectile1 = Instantiate(fireball.gameObj);
+                projectile1.GetComponent<Projectile>()
                     .Init(new Vector3(forceInput.x, 0, forceInput.y).normalized + Vector3.up * 0.5f, stones[isHostTurn.Value ? 0 : 1][currentNum.Value].transform.position + Vector3.up * 1.5f,
                     magnitude / 600);
+                projectile1.GetComponent<NetworkObject>().Spawn(true);
 
                 break;
             case ActivedSkill.arrow:
