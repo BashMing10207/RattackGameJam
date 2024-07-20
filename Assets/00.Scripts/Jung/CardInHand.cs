@@ -48,9 +48,9 @@ public class CardInHand : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         posList.Remove(this.GetComponent<RectTransform>());
 
         Skill skill = NetGameMana.Instance.skillManager.GetSkill(Skills);
-        NetPlayerStone netPlayerStone = NetCPlayer.GetCurrentStone;
-        //skill.TryActivateSkill(netPlayerStone);
-        
+        skill.TryActivateSkill(
+            NetCPlayer.stones[NetCPlayer.isHostTurn.Value ? 0 : 1][NetCPlayer.currentNum.Value].pivot.
+                GetComponent<NetPlayerStone>());
         
         Destroy(gameObject);
     }

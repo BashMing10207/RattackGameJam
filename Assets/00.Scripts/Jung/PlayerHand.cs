@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,13 +10,6 @@ public class PlayerHand : MonoBehaviour
     
     public GameObject cardInHandPrefab;
     public List<RectTransform> cardPosList = new List<RectTransform>();
-    
-    
-    private void Awake()
-    {
-      
-        //playerInventory = net
-    }
 
     private void OnEnable()
     {
