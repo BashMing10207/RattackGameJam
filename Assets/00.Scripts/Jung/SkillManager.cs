@@ -33,7 +33,11 @@ public class SkillManager : MonoBehaviour
             print("key : " + a.Key + " Value : " + a.Value);
         }
     }
-    public Action GetSkill(Skills skillToGet)
+    public Skill GetSkill(Skills skillToGet)
+    {
+        return skillDic[skillToGet];
+    }
+    public Action GetSkillAction(Skills skillToGet)
     {
         return skillDic[skillToGet].TryActivateSkill;
     }
