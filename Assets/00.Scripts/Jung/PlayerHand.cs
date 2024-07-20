@@ -49,9 +49,9 @@ public class PlayerHand : MonoBehaviour
                 newSkill = (Skills)values.GetValue(randomIndex);
                 isDuplicate = false;
 
-                foreach (var skil in PlayerInventory.GetSkills)
+                foreach (var skill in PlayerInventory.GetSkills)
                 {
-                    if (NetGameMana.Instance.skillManager.GetSkill(newSkill) == skil)
+                    if (NetGameMana.Instance.skillManager.GetSkill(newSkill) == skill)
                     {
                         isDuplicate = true;
                         break;

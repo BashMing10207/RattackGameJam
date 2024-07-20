@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Jung.unity
     guid: 4caf93bae0af73e46a060dd9ddf160c7
+  - enabled: 1
+    path: Assets/Scenes/Jung_2.unity
+    guid: 881d42f91aca84d4089f70e4bcb693da
   m_configObjects: {}
