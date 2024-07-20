@@ -8,7 +8,10 @@ public enum Skills : int
     FireGaySkill,
     Gravity,
     PowerUp,
-    Energy,
+    Thunder,
+    WeightUp,
+    Bolt,
+    
     ALL
 }
 
@@ -36,7 +39,6 @@ public class SkillManager : MonoBehaviour
     }
     public Skill GetSkill(Skills skillToGet)
     {
-        NetGameMana.Instance.player.isSkillUsed = true;
         return skillDic[skillToGet];
     }
 
