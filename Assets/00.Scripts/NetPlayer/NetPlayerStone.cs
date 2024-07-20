@@ -45,6 +45,7 @@ public class NetPlayerStone : NetStone
 
     private void OnDisable()
     {
+        NetGameMana.Instance.dieSo.Play();
         NetCPlayer.OnTurnEnd -= HandleOnTurn;
         if (NetGameMana.H_ISMULTI())
         {

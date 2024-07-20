@@ -22,6 +22,8 @@ public class NetGameMana: MonoBehaviour
 
     public GameObject win, lose;
 
+    public AudioSource dieSo, AtSo;
+
     //SkillManaV2 skillManaV2;
     private void Awake()
     {

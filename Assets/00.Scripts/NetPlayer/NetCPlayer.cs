@@ -46,8 +46,8 @@ public class NetCPlayer : NetworkBehaviour
     #endregion
 
     private GameObject playerHand;
-    
-    
+
+    public int actioncount=0;
     void Awake()
     {
         
@@ -230,6 +230,12 @@ public class NetCPlayer : NetworkBehaviour
                     WhatActionServerRpc(mousepos, forceInput, magnitude, activedSkill);
                 //print(forceInput.normalized);
                 lineRenderer.enabled = false;
+                actioncount++;
+                if (actioncount > 1)
+                {
+                    actioncount = 0;
+                    EndTurnServerRpc();
+                }
             }
         }
 
@@ -241,6 +247,7 @@ public class NetCPlayer : NetworkBehaviour
         {
             case ActivedSkill.move:
                 stones[isHostTurn.Value ? 0 : 1][currentNum.Value].ForceMove(new Vector3(forceInput.x, 0, forceInput.y).normalized, -magnitude, 1);
+                NetGameMana.Instance.AtSo.Play();
                 break;
                 
             case ActivedSkill.create:
