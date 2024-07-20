@@ -247,10 +247,11 @@ public class NetCPlayer : NetworkBehaviour
 
                 if (extraLifeCount[isHostTurn.Value ? 0 : 1].Value > 0)
                 {
-                inputpos = new Vector3(inputpos.x, 10, inputpos.z);
+                inputpos = new Vector3(inputpos.x, 4, inputpos.z);
                 Transform spawnedObj = Instantiate(StonePrefs[isHostTurn.Value ? 0 : 1], inputpos, Quaternion.identity);
                 spawnedObj.GetComponent<NetworkObject>().Spawn(true);
-                AddExtraLifeServerRpc(isHostTurn.Value ? 0 : 1, -1);
+                    extraLifeCount[isHostTurn.Value ? 0 : 1].Value = extraLifeCount[isHostTurn.Value ? 0 : 1].Value - 1;
+                    //AddExtraLifeServerRpc(isHostTurn.Value ? 0 : 1, -1);
                 }
 
                 break;
