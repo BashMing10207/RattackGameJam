@@ -12,7 +12,9 @@ public class NetControlUI : MonoBehaviour
     public TextMeshProUGUI CodeOut;
 
     public GameObject roomUI;
+    
 
+    
     string text;
     private void Awake()
     {
@@ -37,6 +39,8 @@ public class NetControlUI : MonoBehaviour
     {
         CodeOut.text = code;
         roomUI.SetActive(false);
+        
+        
     }
 
     void DelayOut()

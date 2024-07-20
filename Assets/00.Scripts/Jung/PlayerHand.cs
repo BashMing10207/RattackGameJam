@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,7 +12,8 @@ public class PlayerHand : MonoBehaviour
     
     public GameObject cardInHandPrefab;
     public List<RectTransform> cardPosList = new List<RectTransform>();
-    
+
+
     private void OnEnable()
     {
         PlayerInventory.OnInventoryChange += HandleSortCardInHand;
@@ -48,7 +50,7 @@ public class PlayerHand : MonoBehaviour
                 int randomIndex = Random.Range(0, values.Length - 1);
                 newSkill = (Skills)values.GetValue(randomIndex);
                 isDuplicate = false;
-
+                
                 foreach (var skill in PlayerInventory.GetSkills)
                 {
                     if (NetGameMana.Instance.skillManager.GetSkill(newSkill) == skill)

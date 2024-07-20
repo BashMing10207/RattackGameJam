@@ -1,6 +1,5 @@
 using Cinemachine;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
@@ -26,17 +25,15 @@ public class NetCPlayer : NetworkBehaviour
 
     public ProjectileSO fireball;//임시 테스트용
 
-    public GameObject inventoryPrefab;
-    
     public PlayerInventory PlayerInventory;
     
     ActivedSkill activedSkill;
-
+    
     #region mouseForceMove
     Vector3 tempMousePos;
     public LineRenderer lineRenderer;
     #endregion
-
+    
     void Awake()
     {
         //JoinEvent.INSTANCE.SetActive(false);
@@ -51,12 +48,8 @@ public class NetCPlayer : NetworkBehaviour
         NetGameMana.Instance.player = this;
         mainCam = Camera.main;
 
-        GameObject inventory = Instantiate(inventoryPrefab);
-        
-        
-        
         lineRenderer = mainCam.GetComponentInChildren<LineRenderer>();
-
+        
     }
 
     void Update()
