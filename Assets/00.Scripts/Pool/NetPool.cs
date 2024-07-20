@@ -11,7 +11,7 @@ public class NetPool : NetworkBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        NetGameMana.INSTANCE.pool = this;
+        NetGameMana.Instance.pool = this;
     }
 
     public void Get(ProjectileSO prjtype, GameObject target)
@@ -44,7 +44,7 @@ public class NetPool : NetworkBehaviour
         return gameObject;
     }
 
-    public GameObject Give(ProjectileSO prjtype, Transform targetTr, float randomDeg)//·£´ı¼º Ãß°¡. ¿Ö °°ÀººÎºĞ ¹İº¹ÀÌ ÀÖ³ó...
+    public GameObject Give(ProjectileSO prjtype, Transform targetTr, float randomDeg)//ëœë¤ì„± ì¶”ê°€. ì™œ ê°™ì€ë¶€ë¶„ ë°˜ë³µì´ ìˆë†...
     {
         Create(prjtype);
 

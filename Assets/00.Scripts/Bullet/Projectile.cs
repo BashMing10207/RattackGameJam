@@ -36,7 +36,7 @@ public class Projectile : Bullet
         {
             if (_hit.transform.CompareTag("Hitable"))
             {
-                if (NetGameMana.INSTANCE != null)
+                if (NetGameMana.Instance != null)
                 {
                     AttackTop(_hit.transform).GetDamage(new AttackStrc(transform.forward, _soData.damage, _soData.power, _soData.dieEffect), _hit.point);
                 }
@@ -60,9 +60,9 @@ public class Projectile : Bullet
     public virtual void Die()
     {
         Instantiate(_soData.dieEffect, transform.position, transform.rotation);
-        if(NetGameMana.INSTANCE != null)
+        if(NetGameMana.Instance != null)
         {
-        NetGameMana.INSTANCE.pool.Get(_soData, gameObject);
+        NetGameMana.Instance.pool.Get(_soData, gameObject);
         }
         else
         {

@@ -143,9 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63762666e14a5ce4b9ac52bdd93a8f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardData: {fileID: 0}
   cardSprite: {fileID: 4266575357410378929}
   cardText: {fileID: 6535849194982014178}
+  skill: 0
 --- !u!114 &2742601522914087792
 MonoBehaviour:
   m_ObjectHideFlags: 0
