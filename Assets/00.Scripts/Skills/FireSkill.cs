@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireGaySkill : Skill
+public class FireSkill : Skill
 {
     protected override void ActivateSkill(NetPlayerStone netPlayerStone)
     {
