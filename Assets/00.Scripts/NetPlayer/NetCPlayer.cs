@@ -1,5 +1,6 @@
 using Cinemachine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
@@ -11,11 +12,12 @@ public enum ActivedSkill
     arrow,
     throwBox
 };
-public class NetCPlayer : NetworkBehaviour      
+public class NetCPlayer : NetworkBehaviour
 {
-    public static NetworkVariable<bool> isHostTurn = new NetworkVariable<bool>(value:true);
-    public static NetworkVariable<int> currentNum = new NetworkVariable<int>(value:0);
-    public static List<NetPlayerStone>[] stones = new List<NetPlayerStone>[2] {new List<NetPlayerStone>(), new List<NetPlayerStone>()};
+    public static NetworkVariable<bool> isHostTurn = new NetworkVariable<bool>(value: true);
+    public static NetworkVariable<int> currentNum = new NetworkVariable<int>(value: 0);
+    public static List<NetPlayerStone>[] stones = new List<NetPlayerStone>[2] { new List<NetPlayerStone>(), new List<NetPlayerStone>() };
+    public static NetworkList<int> extraLifeCount = new NetworkList<int>();
     public static event Action OnTurnEnd;
     public CinemachineVirtualCamera vCamera;
     public Camera mainCam;
@@ -25,33 +27,33 @@ public class NetCPlayer : NetworkBehaviour
 
     public ProjectileSO fireball;//임시 테스트용
 
-    public PlayerInventory PlayerInventory;
-    
     ActivedSkill activedSkill;
-    
+
+    public int extraLife = 3;
+
     #region mouseForceMove
     Vector3 tempMousePos;
     public LineRenderer lineRenderer;
     #endregion
-    
+
     void Awake()
     {
-        //JoinEvent.INSTANCE.SetActive(false);
+
         NetControlUI.INSTANCE.OnJoin(TestLobby.CODE);
-        
         vCamera = NetGameMana.Instance.GetComponentInChildren<CinemachineVirtualCamera>();
         //if (NetGameMana.INSTANCE.player != null)
         //{
         //    Destroy(vCamera);
         //    Destroy(Camera.main.GetComponent<CinemachineBrain>());
         //}
-        NetGameMana.Instance.player = this;
         mainCam = Camera.main;
-
+  
+        if(IsOwner)
+        {
+        NetGameMana.Instance.player = this;
+        }
         lineRenderer = mainCam.GetComponentInChildren<LineRenderer>();
-        
-        
-        
+
     }
 
     void Update()
@@ -64,8 +66,17 @@ public class NetCPlayer : NetworkBehaviour
 
     private void FixedUpdate()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
+        if(stones[isHostTurn.Value ? 0 : 1].Count > 0)
+        {
         vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
         vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
+        }
+
+        //NetGameMana.Instance.lifeUI.ChangeLife();
     }
 
     void NetworkUpdate()
@@ -116,6 +127,7 @@ public class NetCPlayer : NetworkBehaviour
 
     void FuckeCode()
     {
+
         //vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
         //vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
         SetOutline(true);
@@ -137,6 +149,12 @@ public class NetCPlayer : NetworkBehaviour
         currentNum.Value = 0;
         CamChange();
     }
+    [ServerRpc]
+    void AddExtraLifeServerRpc(int index,int num)//돌 생성 시 index는 0:검돌1:흰돌, num은 -1로 호출해야뒤~
+    {
+        extraLifeCount[index]+=num;
+    }
+
     void PlayerActionMing()
     {
         
@@ -173,9 +191,9 @@ public class NetCPlayer : NetworkBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition), out hit))
                 {
+                }
                     Vector3 mousepos = hit.point;
                     WhatActionServerRpc(mousepos, forceInput, magnitude, activedSkill);
-                }
                 //print(forceInput.normalized);
                 lineRenderer.enabled = false;
             }
@@ -196,7 +214,7 @@ public class NetCPlayer : NetworkBehaviour
                 inputpos = new Vector3(inputpos.x, 10, inputpos.z);
                 Transform spawnedObj = Instantiate(StonePrefs[isHostTurn.Value ? 0 : 1], inputpos, Quaternion.identity);
                 spawnedObj.GetComponent<NetworkObject>().Spawn(true);
-                
+                AddExtraLifeServerRpc(isHostTurn.Value ? 0 : 1, -1);
                 break;
             case ActivedSkill.fireball:
                 //NetGameMana.INSTANCE.pool.GiveServerRpc(fireball, transform).GetComponent<Projectile>()
