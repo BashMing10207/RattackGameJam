@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Jung_2.unity
     guid: 881d42f91aca84d4089f70e4bcb693da
+  - enabled: 1
+    path: Assets/Scenes/Bash_NET.unity
+    guid: 0d30ef64b9d5c0b4d85e4bc13555c1ac
   m_configObjects: {}
