@@ -1,9 +1,10 @@
 using Cinemachine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 
 public enum ActivedSkill
 {
@@ -42,11 +43,21 @@ public class NetCPlayer : NetworkBehaviour
     
     void Awake()
     {
-        NetControlUI.INSTANCE.OnJoin(TestLobby.CODE);
         
+        NetControlUI.INSTANCE.OnJoin(TestLobby.CODE);
         vCamera = NetGameMana.Instance.GetComponentInChildren<CinemachineVirtualCamera>();
+        //if (NetGameMana.INSTANCE.player != null)
+        //{
+        //    Destroy(vCamera);
+        //    Destroy(Camera.main.GetComponent<CinemachineBrain>());
+        //}
         mainCam = Camera.main;
+  
+      
+        
         lineRenderer = mainCam.GetComponentInChildren<LineRenderer>();
+
+      
     }
 
     private void Start()
@@ -55,7 +66,9 @@ public class NetCPlayer : NetworkBehaviour
         {
             NetGameMana.Instance.player = this;
             NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().playerInventory = GetComponent<PlayerInventory>();
-            NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().StartCreateCard();
+            NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().Start2();
+            extraLifeCount.Add(extraLife);
+            print("AddMing");
         }
         
         playerHand = NetGameMana.Instance.playerHand;
@@ -125,7 +138,6 @@ public class NetCPlayer : NetworkBehaviour
     {
         SetOutline(false);
         currentNum.Value = (currentNum.Value + 1) % stones[isHostTurn.Value? 0:1].Count;
-        
         //vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
         //vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
         SetOutline(true);
@@ -218,10 +230,14 @@ public class NetCPlayer : NetworkBehaviour
                 
             case ActivedSkill.create:
 
+                if (extraLifeCount[isHostTurn.Value ? 0 : 1] > 0)
+                {
                 inputpos = new Vector3(inputpos.x, 10, inputpos.z);
                 Transform spawnedObj = Instantiate(StonePrefs[isHostTurn.Value ? 0 : 1], inputpos, Quaternion.identity);
                 spawnedObj.GetComponent<NetworkObject>().Spawn(true);
                 AddExtraLifeServerRpc(isHostTurn.Value ? 0 : 1, -1);
+                }
+
                 break;
             case ActivedSkill.fireball:
                 //NetGameMana.INSTANCE.pool.GiveServerRpc(fireball, transform).GetComponent<Projectile>()

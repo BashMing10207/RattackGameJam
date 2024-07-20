@@ -22,6 +22,12 @@ public struct AttackStrc
 public abstract class NetAgent : NetworkBehaviour
 {
     public float maxhp = 10, hp = 10,mass=1,power=10,bounce=0;
+    public void Cadwdawad()
+    {
+        //fuckfcuckfuck
+        //프로퍼티좀써라게이야..
+        hp = hp > maxhp ? maxhp : hp;
+    }
     public Rigidbody rb;
     void Start()
     {
