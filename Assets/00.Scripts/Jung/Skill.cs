@@ -20,6 +20,8 @@ public abstract class Skill : NetworkBehaviour
     public void TryActivateSkill(NetPlayerStone netPlayerStone)
     {
         ActivateSkill(netPlayerStone);
+                
+        
     }
     
     protected virtual void ActivateSkill(NetPlayerStone netPlayerStone)
