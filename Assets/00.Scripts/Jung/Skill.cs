@@ -11,22 +11,34 @@ public abstract class Skill : MonoBehaviour
     [SerializeField] protected float skillCoolDown;
     protected float _skillTimer;
     private List<ParticleSystem> particleSystems;
+    [SerializeField] private int endTurnAmount;
+    [SerializeField] private int endTurnAmountMax;
     protected virtual void Awake()
     {
         if(name == "_")
             name = ToString();
     }
-    public virtual void TryActivateSkill(NetPlayerStone netPlayerStone)
+    public void TryActivateSkill(NetPlayerStone netPlayerStone)
     {
-        ActivateSkill();
+        ActivateSkill(netPlayerStone);
     }
 
-    protected virtual void ActivateSkill()
+    protected virtual void ActivateSkill(NetPlayerStone netPlayerStone)
     {
+        endTurnAmount = endTurnAmountMax;
         foreach (var item in particleSystems)
         {
             item.Play();
         }
-        
+        netPlayerStone.Actions += OnEndTurn;
+    }
+    protected virtual void OnEndTurn(NetPlayerStone netPlayerStone)
+    {
+        endTurnAmount--;
+        if(endTurnAmount < 0)
+        {
+            netPlayerStone.Actions -= OnEndTurn;
+            print("ended skill effect");
+        }
     }
 }

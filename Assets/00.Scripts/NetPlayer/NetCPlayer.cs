@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -15,6 +16,7 @@ public class NetCPlayer : NetworkBehaviour
 {
     public static NetworkVariable<bool> isHostTurn = new NetworkVariable<bool>(value:true);
     public static NetworkVariable<int> currentNum = new NetworkVariable<int>(value:0);
+    public static event Action OnTurnEnd;
     public List<NetPlayerStone>[] stones = new List<NetPlayerStone>[2] {new List<NetPlayerStone>(), new List<NetPlayerStone>()};
     public CinemachineVirtualCamera vCamera;
     public Camera mainCam;
@@ -35,6 +37,7 @@ public class NetCPlayer : NetworkBehaviour
 
     void Awake()
     {
+        print("awa");
         //JoinEvent.INSTANCE.SetActive(false);
         NetControlUI.INSTANCE.OnJoin(TestLobby.CODE);
 
@@ -66,7 +69,7 @@ public class NetCPlayer : NetworkBehaviour
 
     void NoNetWOrkUpdate()
     {
-
+        
     }
 
     void NetworkUpdate()
@@ -124,6 +127,7 @@ public class NetCPlayer : NetworkBehaviour
     [ServerRpc]
     void EndTurnServerRpc()
     {
+        OnTurnEnd?.Invoke();
         isHostTurn.Value = !isHostTurn.Value;
         currentNum.Value = 0;
         CamChange();

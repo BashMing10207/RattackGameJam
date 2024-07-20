@@ -7,9 +7,9 @@ public class IceExplosionSkill : Skill
     public PhysicMaterial iceMaterial;
     public PhysicMaterial _originMaterial;
     
-    protected override void ActivateSkill()
+    protected override void ActivateSkill(NetPlayerStone netPlayerStone)
     {
-        base.ActivateSkill();
+        base.ActivateSkill(netPlayerStone);
         Collider[] colliders = Physics.OverlapSphere(stone.transform.position ,explosionRadius , whatIsStone);
 
         foreach (var item in colliders)
