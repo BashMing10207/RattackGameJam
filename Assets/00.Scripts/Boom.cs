@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class Boom : Bullet
@@ -12,6 +13,7 @@ public class Boom : Bullet
     List<Rigidbody> _Rigidbodies = new List<Rigidbody>();
     private void OnEnable()
     {
+        this.GetComponent<NetworkObject>().Spawn();
         if(Physics.OverlapSphereNonAlloc(transform.position, size,colliders,_layerMask) > 0)
         {
             print("mmdsf");

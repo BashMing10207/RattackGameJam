@@ -106,20 +106,25 @@ public class NetCPlayer : NetworkBehaviour
     [ServerRpc]
     void CamChangeServerRpc()
     {
-        SetOutline(false);
-        
         currentNum.Value = (currentNum.Value + 1) % stones[isHostTurn.Value? 0:1].Count;
         //ÀÎµ¦½º ¹øÈ£ ¹Ù²Ù±â
+        CamChangeClientRpc();
+    }
+
+    [ClientRpc]
+    void CamChangeClientRpc()
+    {
+        vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
+        vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
+        SetOutline(true);
     }
 
     void CamChange()
     {
-        CamChangeServerRpc();
-        vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
-        vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
-        //Ä«¸Þ¶ó ÆÈ·Î¿ì-·è¾Ü ¹Ù²Ù±â
+        SetOutline(false);
 
-        SetOutline(true);
+        CamChangeServerRpc();
+        //Ä«¸Þ¶ó ÆÈ·Î¿ì-·è¾Ü ¹Ù²Ù±â
     }
     [ServerRpc]
     void EndTurnServerRpc()
