@@ -44,6 +44,7 @@ public abstract class Skill : NetworkBehaviour
     {
         //FuckYou;
     }
+
     protected virtual void OnEndTurn(NetPlayerStone netPlayerStone)
     {
         void Deregister()
