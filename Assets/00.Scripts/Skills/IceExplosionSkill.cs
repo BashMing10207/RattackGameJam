@@ -12,7 +12,7 @@ public class IceExplosionSkill : Skill
     {
         base.ActivateSkill(netPlayerStone);
         Collider[] colliders = Physics.OverlapSphere(stone.transform.position ,explosionRadius , whatIsStone);
-
+        
         foreach (var item in colliders)
         {
             var a = item.GetComponent<MeshCollider>().material = iceMaterial;

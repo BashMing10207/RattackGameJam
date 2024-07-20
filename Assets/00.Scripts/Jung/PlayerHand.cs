@@ -10,7 +10,7 @@ public class PlayerHand : MonoBehaviour
     
     public GameObject cardInHandPrefab;
     public List<RectTransform> cardPosList = new List<RectTransform>();
-
+    
     private void OnEnable()
     {
         PlayerInventory.OnInventoryChange += HandleSortCardInHand;
@@ -28,8 +28,6 @@ public class PlayerHand : MonoBehaviour
             cardPosList[i + 1].GetComponent<RectTransform>().DOAnchorPosX(i * 325, 1.2f);
         }
     }
-
-  
     public void StartCreateCard()
     {
         for (int i = 0; i < 3; i++)

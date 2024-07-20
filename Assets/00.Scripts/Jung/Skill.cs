@@ -39,9 +39,6 @@ public abstract class Skill : NetworkBehaviour
         GameObject _effect = Instantiate(effect, netPlayerStone.transform.position, Quaternion.identity);
         ParticleSystem particleSystem = _effect.GetComponent<ParticleSystem>();
         particleSystem.Play();
-        
-        
-        
     }
     protected virtual void AccleateSKilll(NetPlayerStone netPlayerStone, Vector3 forceInput, float magnitude)
     {
