@@ -12,7 +12,7 @@ public class LifeUI : NetworkBehaviour
     RawImage whiteExtrLife, blackExtraLife, whiteLife, blackLife;
     private void Awake()
     {
-        NetGameMana.Instance.lifeUI = this;
+        NetGameMana.Instance.LifeUI = this;
     }
     [ServerRpc]
     public void ChangeLifeServerRpc()

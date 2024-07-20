@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Rendering;
+
 public enum ActivedSkill
 {
     move,
@@ -36,9 +38,12 @@ public class NetCPlayer : NetworkBehaviour
     public LineRenderer lineRenderer;
     #endregion
 
+    private GameObject playerHand;
+    
+    
     void Awake()
     {
-
+        
         NetControlUI.INSTANCE.OnJoin(TestLobby.CODE);
         vCamera = NetGameMana.Instance.GetComponentInChildren<CinemachineVirtualCamera>();
         //if (NetGameMana.INSTANCE.player != null)
@@ -48,19 +53,31 @@ public class NetCPlayer : NetworkBehaviour
         //}
         mainCam = Camera.main;
   
-        if(IsOwner)
-        {
-        NetGameMana.Instance.player = this;
-        }
+      
+        
         lineRenderer = mainCam.GetComponentInChildren<LineRenderer>();
 
+      
+    }
+
+    private void Start()
+    {
+        if(IsOwner)
+        {
+            NetGameMana.Instance.player = this;
+            NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().playerInventory = GetComponent<PlayerInventory>();
+            NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().Start2();
+        }
+        
+        playerHand = NetGameMana.Instance.playerHand;
     }
 
     void Update()
     {
         if (!IsOwner)
             return;
-
+        
+        
         NetworkUpdate();
     }
 

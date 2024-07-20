@@ -75,6 +75,7 @@ public class TestLobby : MonoBehaviour
                             joinAllocation.Key,
                             joinAllocation.ConnectionData,
                             joinAllocation.HostConnectionData
+
                 );
             NetworkManager.Singleton.StartClient();
         }

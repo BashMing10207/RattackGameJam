@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
@@ -12,6 +13,8 @@ public class PlayerInventory : MonoBehaviour
     /// <summary>
     /// adds skill to inventory if possible
     /// </summary>
+    
+
     public void TryAddSkill(Skill skillToAdd)
     {
         void AddSkill()
