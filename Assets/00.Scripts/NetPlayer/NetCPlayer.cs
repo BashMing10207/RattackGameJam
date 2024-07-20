@@ -75,10 +75,11 @@ public class NetCPlayer : NetworkBehaviour
         {
             BaseAction();//ผ๗รป
             PlayerActionMing();
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+
+        if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.LeftShift))
         {
             EndTurnServerRpc();
+        }
         }
     }
 
