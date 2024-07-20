@@ -66,7 +66,7 @@ public class NetCPlayer : NetworkBehaviour
         {
             NetGameMana.Instance.player = this;
             NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().playerInventory = GetComponent<PlayerInventory>();
-            NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().Start2();
+            NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().StartCreateCard();
             extraLifeCount.Add(extraLife);
             print("AddMing");
         }

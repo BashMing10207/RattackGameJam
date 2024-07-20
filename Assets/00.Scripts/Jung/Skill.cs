@@ -29,10 +29,12 @@ public abstract class Skill : MonoBehaviour
             netPlayerStone.Actions += OnEndTurn;
         }
         else if (endTurnAmount <= 0) endTurnAmount = endTurnAmountMax;
-        
-        GameObject _effect = Instantiate(effect , netPlayerStone.transform.position , Quaternion.identity);
+
+        GameObject _effect = Instantiate(effect, netPlayerStone.transform.position, Quaternion.identity);
         ParticleSystem particleSystem = _effect.GetComponent<ParticleSystem>();
         particleSystem.Play();
+        
+        
         
     }
     protected virtual void OnEndTurn(NetPlayerStone netPlayerStone)
