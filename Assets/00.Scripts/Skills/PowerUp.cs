@@ -9,5 +9,6 @@ public class PowerUp : Skill
     {
         base.ActivateSkill(netPlayerStone);
         netPlayerStone.hp += amount;
+        netPlayerStone.Cadwdawad();
     }
 }
