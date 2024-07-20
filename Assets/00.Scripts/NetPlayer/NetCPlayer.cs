@@ -191,9 +191,9 @@ public class NetCPlayer : NetworkBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition), out hit))
                 {
+                }
                     Vector3 mousepos = hit.point;
                     WhatActionServerRpc(mousepos, forceInput, magnitude, activedSkill);
-                }
                 //print(forceInput.normalized);
                 lineRenderer.enabled = false;
             }
