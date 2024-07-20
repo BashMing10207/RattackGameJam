@@ -14,6 +14,7 @@ public abstract class Skill : MonoBehaviour
     [SerializeField] private int endTurnAmountMax;
     protected virtual void Awake()
     {
+        endTurnAmount = endTurnAmountMax;
         if(name == "_")
             name = ToString();
     }
@@ -24,8 +25,11 @@ public abstract class Skill : MonoBehaviour
 
     protected virtual void ActivateSkill(NetPlayerStone netPlayerStone)
     {
-        endTurnAmount = endTurnAmountMax;
-        netPlayerStone.Actions += OnEndTurn;
+        if(endTurnAmount == endTurnAmountMax)
+        {
+            netPlayerStone.Actions += OnEndTurn;
+        }
+        else if (endTurnAmount <= 0) endTurnAmount = endTurnAmountMax;
         foreach (var item in particleSystems)
         {
             item.Play();
