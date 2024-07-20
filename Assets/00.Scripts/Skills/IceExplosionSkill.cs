@@ -17,9 +17,10 @@ public class IceExplosionSkill : Skill
             item.GetComponent<MeshCollider>().material = iceMaterial;
         }
         //다음턴이 지났을때 다시 오리진으로 돌려줘야 됨.
-        
-        
     }
-    
-    
+    protected override void OnDeregisterEvent()
+    {
+
+    }
+
 }

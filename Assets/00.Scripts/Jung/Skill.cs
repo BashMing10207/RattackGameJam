@@ -26,19 +26,28 @@ public abstract class Skill : MonoBehaviour
     protected virtual void ActivateSkill(NetPlayerStone netPlayerStone)
     {
         endTurnAmount = endTurnAmountMax;
+        netPlayerStone.Actions += OnEndTurn;
         foreach (var item in particleSystems)
         {
             item.Play();
         }
-        netPlayerStone.Actions += OnEndTurn;
     }
     protected virtual void OnEndTurn(NetPlayerStone netPlayerStone)
     {
-        endTurnAmount--;
-        if(endTurnAmount < 0)
+        void Deregister()
         {
             netPlayerStone.Actions -= OnEndTurn;
             print("ended skill effect");
+            OnDeregisterEvent();
         }
+        endTurnAmount--;
+        if(endTurnAmount <= 0)
+        {
+            Deregister();
+        }
+    }
+    protected virtual void OnDeregisterEvent()
+    {
+
     }
 }

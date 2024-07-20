@@ -32,6 +32,7 @@ public class NetPlayerStone : NetStone
     }
     private void HandleOnTurn()
     {
+        //print("HandleON")
         Actions?.Invoke(this);
     }
     public override void ForceMove(Vector3 dir, float power, float damage)
