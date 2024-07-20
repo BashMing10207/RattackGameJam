@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -15,7 +16,8 @@ public class NetCPlayer : NetworkBehaviour
 {
     public static NetworkVariable<bool> isHostTurn = new NetworkVariable<bool>(value:true);
     public static NetworkVariable<int> currentNum = new NetworkVariable<int>(value:0);
-    public List<NetPlayerStone>[] stones = new List<NetPlayerStone>[2] {new List<NetPlayerStone>(), new List<NetPlayerStone>()};
+    public static List<NetPlayerStone>[] stones = new List<NetPlayerStone>[2] {new List<NetPlayerStone>(), new List<NetPlayerStone>()};
+    public static event Action OnTurnEnd;
     public CinemachineVirtualCamera vCamera;
     public Camera mainCam;
     public bool isActionSelected = false;
@@ -35,16 +37,19 @@ public class NetCPlayer : NetworkBehaviour
 
     void Awake()
     {
-        //JoinEvent.Instance.SetActive(false);
+        print("awa");
+        //JoinEvent.INSTANCE.SetActive(false);
         NetControlUI.INSTANCE.OnJoin(TestLobby.CODE);
 
-        if(NetGameMana.Instance.player != null)
-        {
-            stones = NetGameMana.Instance.player.stones;
-        }
-        NetGameMana.Instance.player = this;
+        vCamera = NetGameMana.INSTANCE.GetComponentInChildren<CinemachineVirtualCamera>();
+        //if (NetGameMana.INSTANCE.player != null)
+        //{
+        //    Destroy(vCamera);
+        //    Destroy(Camera.main.GetComponent<CinemachineBrain>());
+        //}
+        NetGameMana.INSTANCE.player = this;
         mainCam = Camera.main;
-        vCamera = NetGameMana.Instance.GetComponentInChildren<CinemachineVirtualCamera>();
+  
         lineRenderer = mainCam.GetComponentInChildren<LineRenderer>();
 
     }
@@ -66,7 +71,7 @@ public class NetCPlayer : NetworkBehaviour
 
     void NoNetWOrkUpdate()
     {
-
+        
     }
 
     void NetworkUpdate()
@@ -75,10 +80,11 @@ public class NetCPlayer : NetworkBehaviour
         {
             BaseAction();//¼÷Ã»
             PlayerActionMing();
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+
+        if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.LeftShift))
         {
             EndTurnServerRpc();
+        }
         }
     }
 
@@ -107,23 +113,42 @@ public class NetCPlayer : NetworkBehaviour
     void CamChangeServerRpc()
     {
         SetOutline(false);
-        
         currentNum.Value = (currentNum.Value + 1) % stones[isHostTurn.Value? 0:1].Count;
+        vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
+        vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
+        SetOutline(true);
         //ÀÎµ¦½º ¹øÈ£ ¹Ù²Ù±â
+    }
+
+    [ClientRpc]
+    void CamChangeClientRpc()
+    {
+        SetOutline(false);
+        vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value-1].pivot;
+        vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value-1].pivot;
+        SetOutline(true);
+    }
+
+    void FuckeCode()
+    {
+
+        vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
+        vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
+        SetOutline(true);
     }
 
     void CamChange()
     {
+        SetOutline(false);
         CamChangeServerRpc();
-        vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
-        vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
-        //Ä«¸Þ¶ó ÆÈ·Î¿ì-·è¾Ü ¹Ù²Ù±â
 
-        SetOutline(true);
+        Invoke(nameof(FuckeCode), 0.1f);
+        //Ä«¸Þ¶ó ÆÈ·Î¿ì-·è¾Ü ¹Ù²Ù±â
     }
     [ServerRpc]
     void EndTurnServerRpc()
     {
+        OnTurnEnd?.Invoke();
         isHostTurn.Value = !isHostTurn.Value;
         currentNum.Value = 0;
         CamChange();
@@ -160,7 +185,13 @@ public class NetCPlayer : NetworkBehaviour
                 Vector3 forceInput = (Input.mousePosition - tempMousePos);
                 float magnitude = forceInput.magnitude;
                 magnitude = Mathf.Clamp(magnitude, 0, 1000);
-                WhatActionServerRpc(Input.mousePosition,forceInput, magnitude,activedSkill);
+
+                RaycastHit hit;
+                if (Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition), out hit))
+                {
+                    Vector3 mousepos = hit.point;
+                    WhatActionServerRpc(mousepos, forceInput, magnitude, activedSkill);
+                }
                 //print(forceInput.normalized);
                 lineRenderer.enabled = false;
             }
@@ -168,7 +199,7 @@ public class NetCPlayer : NetworkBehaviour
 
     }
     [ServerRpc]
-    void WhatActionServerRpc(Vector3 Inputpos,Vector3 forceInput, float magnitude,ActivedSkill whatSkill)
+    void WhatActionServerRpc(Vector3 inputpos,Vector3 forceInput, float magnitude,ActivedSkill whatSkill)
     {
         switch ((whatSkill))
         {
@@ -178,19 +209,18 @@ public class NetCPlayer : NetworkBehaviour
                 
             case ActivedSkill.create:
 
-                RaycastHit hit;
-                if (Physics.Raycast(mainCam.ScreenPointToRay(Inputpos), out hit))
-                {
-                Vector3 mousepos = hit.point;
-                mousepos = new Vector3(mousepos.x, 10, mousepos.z);
-                Transform spawnedObj = Instantiate(StonePrefs[isHostTurn.Value ? 0 : 1], mousepos, Quaternion.identity);
+                inputpos = new Vector3(inputpos.x, 10, inputpos.z);
+                Transform spawnedObj = Instantiate(StonePrefs[isHostTurn.Value ? 0 : 1], inputpos, Quaternion.identity);
                 spawnedObj.GetComponent<NetworkObject>().Spawn(true);
-                }
+                
                 break;
             case ActivedSkill.fireball:
-                NetGameMana.Instance.pool.Give(fireball, transform).GetComponent<Projectile>()
+                //NetGameMana.INSTANCE.pool.GiveServerRpc(fireball, transform).GetComponent<Projectile>()
+                GameObject projectile1 = Instantiate(fireball.gameObj);
+                projectile1.GetComponent<Projectile>()
                     .Init(new Vector3(forceInput.x, 0, forceInput.y).normalized + Vector3.up * 0.5f, stones[isHostTurn.Value ? 0 : 1][currentNum.Value].transform.position + Vector3.up * 1.5f,
                     magnitude / 600);
+                projectile1.GetComponent<NetworkObject>().Spawn(true);
 
                 break;
             case ActivedSkill.arrow:

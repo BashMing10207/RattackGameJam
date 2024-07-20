@@ -61,6 +61,8 @@ public class TestLobby : MonoBehaviour
 
     async void JoinRelay(string joinCode)
     {
+        await UnityServices.InitializeAsync();
+
         try
         {
         JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
@@ -73,6 +75,7 @@ public class TestLobby : MonoBehaviour
                             joinAllocation.Key,
                             joinAllocation.ConnectionData,
                             joinAllocation.HostConnectionData
+
                 );
             NetworkManager.Singleton.StartClient();
         }

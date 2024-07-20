@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class NetPlayerStone : NetStone
@@ -11,21 +12,29 @@ public class NetPlayerStone : NetStone
     public float health;
     public float weight;
     public float force;
-        
+    public event Action<NetPlayerStone> Actions;
+    private void Awake()
+    {
+        NetCPlayer.OnTurnEnd += HandleOnTurn;
+    }
     private void Start()
     {
         if (NetGameMana.H_ISMULTI())
         {
-            NetGameMana.Instance.player.stones[isHost?0:1].Add(this);
+            NetCPlayer.stones[isHost?0:1].Add(this);
         }
         else
         {
-            NetGameMana.Instance.playerOff.stones.Add(this);
+            NetGameMana.INSTANCE.playerOff.stones.Add(this);
         }
         
         outLine.SetActive(false);
     }
-
+    private void HandleOnTurn()
+    {
+        //print("HandleON")
+        Actions?.Invoke(this);
+    }
     public override void ForceMove(Vector3 dir, float power, float damage)
     {
         base.ForceMove(dir, power*this.power, damage);
@@ -33,13 +42,14 @@ public class NetPlayerStone : NetStone
 
     private void OnDisable()
     {
+        NetCPlayer.OnTurnEnd -= HandleOnTurn;
         if (NetGameMana.H_ISMULTI())
         {
-            NetGameMana.Instance.player.stones[isHost ? 0 : 1].Remove(this);
+            NetCPlayer.stones[isHost ? 0 : 1].Remove(this);
         }
         else
         {
-            NetGameMana.Instance.playerOff.stones.Remove(this);
+            NetGameMana.INSTANCE.playerOff.stones.Remove(this);
         }
     }
 
