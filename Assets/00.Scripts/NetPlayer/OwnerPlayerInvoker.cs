@@ -10,7 +10,7 @@ public class OwnerPlayerInvoker : NetworkBehaviour
     {
         if (IsOwner)
         {
-            NetGameMana.Instance.player.Updeat();
+            ///NetGameMana.Instance.player.Updeat();
         }
     }
 }

@@ -24,9 +24,7 @@ public class NetCPlayer : NetworkBehaviour
 
     public Transform[] StonePrefs;
 
-
     public ProjectileSO fireball;//임시 테스트용
-
 
     ActivedSkill activedSkill;
 
@@ -37,7 +35,6 @@ public class NetCPlayer : NetworkBehaviour
 
     void Awake()
     {
-        print("awa");
         //JoinEvent.INSTANCE.SetActive(false);
         NetControlUI.INSTANCE.OnJoin(TestLobby.CODE);
 
@@ -59,19 +56,13 @@ public class NetCPlayer : NetworkBehaviour
         if (!IsOwner)
             return;
 
-        Updeat();
-    }
-  
-    public void Updeat()
-    {
-
         NetworkUpdate();
-
     }
 
-    void NoNetWOrkUpdate()
+    private void FixedUpdate()
     {
-        
+        vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
+        vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
     }
 
     void NetworkUpdate()
@@ -114,26 +105,17 @@ public class NetCPlayer : NetworkBehaviour
     {
         SetOutline(false);
         currentNum.Value = (currentNum.Value + 1) % stones[isHostTurn.Value? 0:1].Count;
-        vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
-        vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
+        //vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
+        //vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
         SetOutline(true);
         //인덱스 번호 바꾸기
-    }
-
-    [ClientRpc]
-    void CamChangeClientRpc()
-    {
-        SetOutline(false);
-        vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value-1].pivot;
-        vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value-1].pivot;
-        SetOutline(true);
     }
 
     void FuckeCode()
     {
 
-        vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
-        vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
+        //vCamera.LookAt = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
+        //vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
         SetOutline(true);
     }
 
