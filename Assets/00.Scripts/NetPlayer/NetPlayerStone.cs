@@ -3,13 +3,15 @@ using UnityEngine;
 public class NetPlayerStone : NetStone
 {
     public Transform pivot;
+    public GameObject outLine;
+    
     public int id;
     public bool isHost;
-
+    
     public float health;
     public float weight;
     public float force;
-    
+        
     private void Start()
     {
         if (NetGameMana.H_ISMULTI())
@@ -20,6 +22,8 @@ public class NetPlayerStone : NetStone
         {
             NetGameMana.INSTANCE.playerOff.stones.Add(this);
         }
+        
+        outLine.SetActive(false);
     }
 
     public override void ForceMove(Vector3 dir, float power, float damage)
