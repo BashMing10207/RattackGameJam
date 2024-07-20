@@ -35,16 +35,16 @@ public class NetCPlayer : NetworkBehaviour
 
     void Awake()
     {
-        //JoinEvent.INSTANCE.SetActive(false);
+        //JoinEvent.Instance.SetActive(false);
         NetControlUI.INSTANCE.OnJoin(TestLobby.CODE);
 
-        if(NetGameMana.INSTANCE.player != null)
+        if(NetGameMana.Instance.player != null)
         {
-            stones = NetGameMana.INSTANCE.player.stones;
+            stones = NetGameMana.Instance.player.stones;
         }
-        NetGameMana.INSTANCE.player = this;
+        NetGameMana.Instance.player = this;
         mainCam = Camera.main;
-        vCamera = NetGameMana.INSTANCE.GetComponentInChildren<CinemachineVirtualCamera>();
+        vCamera = NetGameMana.Instance.GetComponentInChildren<CinemachineVirtualCamera>();
         lineRenderer = mainCam.GetComponentInChildren<LineRenderer>();
 
     }
@@ -188,7 +188,7 @@ public class NetCPlayer : NetworkBehaviour
                 }
                 break;
             case ActivedSkill.fireball:
-                NetGameMana.INSTANCE.pool.Give(fireball, transform).GetComponent<Projectile>()
+                NetGameMana.Instance.pool.Give(fireball, transform).GetComponent<Projectile>()
                     .Init(new Vector3(forceInput.x, 0, forceInput.y).normalized + Vector3.up * 0.5f, stones[isHostTurn.Value ? 0 : 1][currentNum.Value].transform.position + Vector3.up * 1.5f,
                     magnitude / 600);
 

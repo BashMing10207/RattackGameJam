@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fad20ac249df0c4da92aac33bea949d, type: 3}
-  m_Name: ThunderSkill
+  m_Name: PowerUpSkill
   m_EditorClassIdentifier: 
-  description: this is card
-  cardImage: {fileID: -1774094154, guid: 659294e9f570a3a4aa6bf98c63c7fb6b, type: 3}
+  description: "\uD30C\uC6CC\uC5C5\uC9F1"
+  cardImage: {fileID: 344780998, guid: 659294e9f570a3a4aa6bf98c63c7fb6b, type: 3}

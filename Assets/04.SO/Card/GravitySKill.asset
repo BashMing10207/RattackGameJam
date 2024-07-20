@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fad20ac249df0c4da92aac33bea949d, type: 3}
-  m_Name: IceSkill
+  m_Name: GravitySKill
   m_EditorClassIdentifier: 
-  description: "\uC544\uC774\uC2A4\uC544\uC774\uC2A4\uC544\uC774\uC2DC\uB824~"
-  cardImage: {fileID: 1231930525, guid: 659294e9f570a3a4aa6bf98c63c7fb6b, type: 3}
+  description: "\uC911\uB825\uC774 \uAD81\uAE08\uD574~ \uADF8\uB798\uBE44\uD2F0 "
+  cardImage: {fileID: -1308582366, guid: 659294e9f570a3a4aa6bf98c63c7fb6b, type: 3}

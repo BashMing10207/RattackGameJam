@@ -16,11 +16,11 @@ public class NetPlayerStone : NetStone
     {
         if (NetGameMana.H_ISMULTI())
         {
-            NetGameMana.INSTANCE.player.stones[isHost?0:1].Add(this);
+            NetGameMana.Instance.player.stones[isHost?0:1].Add(this);
         }
         else
         {
-            NetGameMana.INSTANCE.playerOff.stones.Add(this);
+            NetGameMana.Instance.playerOff.stones.Add(this);
         }
         
         outLine.SetActive(false);
@@ -35,11 +35,11 @@ public class NetPlayerStone : NetStone
     {
         if (NetGameMana.H_ISMULTI())
         {
-            NetGameMana.INSTANCE.player.stones[isHost ? 0 : 1].Remove(this);
+            NetGameMana.Instance.player.stones[isHost ? 0 : 1].Remove(this);
         }
         else
         {
-            NetGameMana.INSTANCE.playerOff.stones.Remove(this);
+            NetGameMana.Instance.playerOff.stones.Remove(this);
         }
     }
 
