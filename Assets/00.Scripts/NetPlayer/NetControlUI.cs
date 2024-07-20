@@ -6,15 +6,23 @@ using UnityEngine.UI;
 public class NetControlUI : MonoBehaviour
 {
     public Button host, client;
+    public static NetControlUI INSTANCE;
 
     public TMP_InputField CodeInput;
     public TextMeshProUGUI CodeOut;
 
+    public GameObject roomUI;
+
+    string text;
     private void Awake()
-    {   
+    {
+        INSTANCE = this;
+
         host.onClick.AddListener(() =>
         {
-            CodeOut.text = NetGameMana.INSTANCE.relayMana.HostStartMing();
+            NetGameMana.INSTANCE.relayMana.HostStartMing();
+            
+            //Invoke(nameof(DelayOut), 1f);
             //NetworkManager.Singleton.StartHost();
 
         });
@@ -23,6 +31,17 @@ public class NetControlUI : MonoBehaviour
             NetGameMana.INSTANCE.relayMana.JoinMing(CodeInput.text);
             //NetworkManager.Singleton.StartClient();
         });
+    }
+
+    public void OnJoin(string code)
+    {
+        CodeOut.text = code;
+        roomUI.SetActive(false);
+    }
+
+    void DelayOut()
+    {
+        CodeOut.text = text;
     }
     //public void EventHost()
     //{
