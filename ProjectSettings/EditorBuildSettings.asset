@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Bash_NET.unity
-    guid: 0d30ef64b9d5c0b4d85e4bc13555c1ac
-  - enabled: 1
     path: Assets/Scenes/Jung_2.unity
     guid: e92a7a073b2d4244c9ea5281d8eeff99
+  - enabled: 1
+    path: Assets/Scenes/Bash_NET.unity
+    guid: 0d30ef64b9d5c0b4d85e4bc13555c1ac
   - enabled: 1
     path: Assets/Scenes/Jung.unity
     guid: 4caf93bae0af73e46a060dd9ddf160c7
