@@ -72,12 +72,12 @@ public class NetPlayerStone : NetStone
     
     public void AddForce(float amount)
     {
-        force += amount;
+        power += amount;
     }
     
     public void AddWeight(float amount)
     {
-        weight += amount;
+        mass += amount;
     }
     
 }
