@@ -4,12 +4,12 @@ using System.Security.Cryptography;
 using Unity.Netcode;
 using UnityEngine;
 
-public class ProjectileSkill : Skill
+public class ProjectileSkill : SkillV2
 {
-    protected override void AccleateSKilll(NetPlayerStone netPlayerStone, Vector3 forceInput, float magnitude)
-    {
+    //public override void AccleateSKilll(NetPlayerStone netPlayerStone, Vector3 forceInput, float magnitude)
+    //{
         
-    }
+    //}
 
     [ServerRpc]
     public void MingExpendServerRpc()

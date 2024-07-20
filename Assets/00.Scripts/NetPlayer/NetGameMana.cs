@@ -18,6 +18,8 @@ public class NetGameMana: MonoBehaviour
     public GameObject playerHand;
     
     public TestLobby relayMana;
+
+    SkillManaV2 skillManaV2;
     private void Awake()
     {
         Instance = this;
