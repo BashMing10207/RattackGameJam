@@ -38,12 +38,8 @@ public class PlayerHand : MonoBehaviour
         }
     }
 
-    public void Start2()
-    {
-        StartCreateCard();
-    }
-    
-    private void StartCreateCard()
+  
+    public void StartCreateCard()
     {
         for (int i = 0; i < 3; i++)
         {

@@ -67,6 +67,8 @@ public class NetCPlayer : NetworkBehaviour
             NetGameMana.Instance.player = this;
             NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().playerInventory = GetComponent<PlayerInventory>();
             NetGameMana.Instance.playerHand.GetComponent<PlayerHand>().Start2();
+            extraLifeCount.Add(extraLife);
+            print("AddMing");
         }
         
         playerHand = NetGameMana.Instance.playerHand;
@@ -228,10 +230,14 @@ public class NetCPlayer : NetworkBehaviour
                 
             case ActivedSkill.create:
 
+                if (extraLifeCount[isHostTurn.Value ? 0 : 1] > 0)
+                {
                 inputpos = new Vector3(inputpos.x, 10, inputpos.z);
                 Transform spawnedObj = Instantiate(StonePrefs[isHostTurn.Value ? 0 : 1], inputpos, Quaternion.identity);
                 spawnedObj.GetComponent<NetworkObject>().Spawn(true);
                 AddExtraLifeServerRpc(isHostTurn.Value ? 0 : 1, -1);
+                }
+
                 break;
             case ActivedSkill.fireball:
                 //NetGameMana.INSTANCE.pool.GiveServerRpc(fireball, transform).GetComponent<Projectile>()

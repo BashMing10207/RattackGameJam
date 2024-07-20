@@ -11,7 +11,7 @@ public class NetControlUI : MonoBehaviour
     public TMP_InputField CodeInput;
     public TextMeshProUGUI CodeOut;
 
-    public GameObject roomUI;
+    public GameObject roomUI,gameUI;
     
 
     
@@ -39,7 +39,7 @@ public class NetControlUI : MonoBehaviour
     {
         CodeOut.text = code;
         roomUI.SetActive(false);
-        
+        gameUI.SetActive(true);
         
     }
 
