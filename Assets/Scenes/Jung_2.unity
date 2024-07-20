@@ -775,7 +775,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isUiUse: 0
   so_Card: {fileID: 11400000, guid: fdd9b76277525c745993b8f4855eb43f, type: 2}
-  effectOnSpawn: {fileID: 0}
+  effect: {fileID: 0}
   endTurnAmount: 0
   endTurnAmountMax: 0
   stone: {fileID: 0}
@@ -11485,7 +11485,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 701260412}
-  - component: {fileID: 701260415}
   - component: {fileID: 701260414}
   m_Layer: 0
   m_Name: '-'
@@ -11523,31 +11522,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isUiUse: 0
   so_Card: {fileID: 11400000, guid: 6b92d6521ebb0fc4b961b7ed9ff3d182, type: 2}
-  effectOnSpawn: {fileID: 0}
+  effect: {fileID: 0}
   endTurnAmount: 0
   endTurnAmountMax: 0
   stone: {fileID: 0}
---- !u!114 &701260415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 701260411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1230958765
-  InScenePlacedSourceGlobalObjectIdHash: 0
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!1 &721100821
 GameObject:
   m_ObjectHideFlags: 0
@@ -31989,6 +31967,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1119325985}
+  - component: {fileID: 1119325987}
   - component: {fileID: 1119325986}
   m_Layer: 0
   m_Name: '-'
@@ -32026,10 +32005,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isUiUse: 0
   so_Card: {fileID: 11400000, guid: e5d5ffae010e9a8459f720395787a4a6, type: 2}
-  effectOnSpawn: {fileID: 0}
+  effect: {fileID: 0}
   endTurnAmount: 0
   endTurnAmountMax: 0
   stone: {fileID: 0}
+--- !u!114 &1119325987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119325984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 604095217
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &1124186015
 GameObject:
   m_ObjectHideFlags: 0
@@ -32076,7 +32076,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isUiUse: 1
   so_Card: {fileID: 11400000, guid: 3d84063a07aaf02429d25375d611b912, type: 2}
-  effectOnSpawn: {fileID: 0}
+  effect: {fileID: 0}
   endTurnAmount: 0
   endTurnAmountMax: 0
   stone: {fileID: 0}
@@ -68038,7 +68038,6 @@ MonoBehaviour:
   mainCam: {fileID: 330585545}
   isActionSelected: 1
   StonePrefs: []
-  fireball: {fileID: 11400000, guid: 27013773e18189b4eb6b3be30a78d63c, type: 2}
   extraLife: 3
   lineRenderer: {fileID: 2074936019}
 --- !u!1 &1983296932
