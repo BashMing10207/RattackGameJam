@@ -11,7 +11,6 @@ public enum Skills : int
     Thunder,
     WeightUp,
     Bolt,
-    
     ALL
 }
 

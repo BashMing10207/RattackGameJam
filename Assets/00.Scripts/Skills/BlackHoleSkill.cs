@@ -14,8 +14,8 @@ public class BlackHoleSkill : Skill
         Collider[] cols = Physics.OverlapSphere(netPlayerStone.transform.position , 30 ,whatIsStone );
         foreach (var item in cols)
         {
-            item.GetComponentInParent<Rigidbody>().AddForce((item.transform.position - transform.position).normalized * 200);
-            Debug.Log(item.name);
+            item.GetComponentInParent<Rigidbody>()
+                .AddForce((item.transform.position - transform.position).normalized * 2000);
         }
         
     }
