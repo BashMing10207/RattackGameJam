@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,17 +17,20 @@ public class LifeUI : NetworkBehaviour
     [ServerRpc]
     public void ChangeLifeServerRpc()
     {
-        SizeAndMove(blackExtraLife, NetCPlayer.extraLifeCount.Value[0]);
-        SizeAndMove(blackExtraLife, NetCPlayer.extraLifeCount.Value[1]);
+        SizeAndMove(blackExtraLife, NetCPlayer.extraLifeCount[0]);
+        SizeAndMove(blackExtraLife, NetCPlayer.extraLifeCount[1]);
         SizeAndMove(blackLife, NetCPlayer.stones[0].Count);
         SizeAndMove(whiteLife, NetCPlayer.stones[1].Count);
     }
     public void ChangeLife()
     {
-        SizeAndMove(blackExtraLife, NetCPlayer.extraLifeCount.Value[0]);
-        SizeAndMove(blackExtraLife, NetCPlayer.extraLifeCount.Value[1]);
+        if(NetCPlayer.extraLifeCount.Count>0 && NetCPlayer.stones[0].Count>0 && NetCPlayer.stones[1].Count > 0)
+        {
+        SizeAndMove(blackExtraLife, NetCPlayer.extraLifeCount[0]);
+        SizeAndMove(blackExtraLife, NetCPlayer.extraLifeCount[1]);
         SizeAndMove(blackLife, NetCPlayer.stones[0].Count);
         SizeAndMove(whiteLife, NetCPlayer.stones[1].Count);
+        }
     }
 
 

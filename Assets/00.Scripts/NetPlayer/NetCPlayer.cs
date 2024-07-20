@@ -17,7 +17,7 @@ public class NetCPlayer : NetworkBehaviour
     public static NetworkVariable<bool> isHostTurn = new NetworkVariable<bool>(value: true);
     public static NetworkVariable<int> currentNum = new NetworkVariable<int>(value: 0);
     public static List<NetPlayerStone>[] stones = new List<NetPlayerStone>[2] { new List<NetPlayerStone>(), new List<NetPlayerStone>() };
-    public static NetworkVariable<int[]> extraLifeCount = new NetworkVariable<int[]>(new int[2] {4,4});
+    public static NetworkList<int> extraLifeCount = new NetworkList<int>();
     public static event Action OnTurnEnd;
     public CinemachineVirtualCamera vCamera;
     public Camera mainCam;
@@ -38,21 +38,20 @@ public class NetCPlayer : NetworkBehaviour
 
     void Awake()
     {
-        if(!IsOwner)
-        {
-            return;
-        }
-        NetControlUI.INSTANCE.OnJoin(TestLobby.CODE);
 
+        NetControlUI.INSTANCE.OnJoin(TestLobby.CODE);
         vCamera = NetGameMana.Instance.GetComponentInChildren<CinemachineVirtualCamera>();
         //if (NetGameMana.INSTANCE.player != null)
         //{
         //    Destroy(vCamera);
         //    Destroy(Camera.main.GetComponent<CinemachineBrain>());
         //}
-        NetGameMana.Instance.player = this;
         mainCam = Camera.main;
   
+        if(IsOwner)
+        {
+        NetGameMana.Instance.player = this;
+        }
         lineRenderer = mainCam.GetComponentInChildren<LineRenderer>();
 
     }
@@ -77,7 +76,7 @@ public class NetCPlayer : NetworkBehaviour
         vCamera.Follow = stones[isHostTurn.Value ? 0 : 1][currentNum.Value].pivot;
         }
 
-        NetGameMana.Instance.lifeUI.ChangeLife();
+        //NetGameMana.Instance.lifeUI.ChangeLife();
     }
 
     void NetworkUpdate()
@@ -153,7 +152,7 @@ public class NetCPlayer : NetworkBehaviour
     [ServerRpc]
     void AddExtraLifeServerRpc(int index,int num)//돌 생성 시 index는 0:검돌1:흰돌, num은 -1로 호출해야뒤~
     {
-        extraLifeCount.Value[index]+=num;
+        extraLifeCount[index]+=num;
     }
 
     void PlayerActionMing()
